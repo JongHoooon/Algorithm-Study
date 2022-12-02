@@ -4,7 +4,7 @@ import Foundation
  When someone searches their contacts based on a phone number, it's nice when a list
  of contact pops up.
  
- Write an algorithm that searches you contacts for phone number strings, and returns:
+ Write an algorithm that searches your contacts for phone number strings, and returns:
   - NO CONTACT if contact can't be found
   - A contact if a contact is found
   - The first alphabetized contact if there are multiple
@@ -16,9 +16,46 @@ import Foundation
  Answer should be correct. Don't worry about performance.
  */
 
+//public func solution(_ A : [String], _ B : [String], _ P : String) -> String {
+//    // do your work here
+//
+//    var selectedContact: String?
+//    for contact in B {
+//        if contact.localizedStandardContains(P) == true {
+//            selectedContact = contact
+//            break
+//        }
+//    }
+//
+//    var result: String = ""
+//
+//    guard let contact = selectedContact else { return "NO CONTACT" }
+//    let index = B.firstIndex { str in
+//        str == contact
+//    }
+//    result = A[index!]
+//
+//
+//    return result
+//}
+
 public func solution(_ A : [String], _ B : [String], _ P : String) -> String {
-    // do your work here
-    return ""
+    var result = [String]()
+    
+    // loop through looking for match - when found add to result
+    for i in 0..<B.count {
+        if B[i].contains(P) {
+            result.append(A[i])
+        }
+    }
+    
+    if result.count == 0 {
+        return "NO CONTACT"
+    } else if  result.count == 1 {
+        return result.first!
+    }
+    
+    return result.sorted().first!
 }
 
 let A = ["pim", "pom"]

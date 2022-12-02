@@ -22,9 +22,62 @@ import UIKit
  - if the block ends in anything other than -xxx or -xx reformat to a block of two like xx-xx (not obvious)
  
  */
+
+/*
 func solution(_ S : String) -> String {
-    // do your work here
-    return ""
+    guard S.count > 3 else { return S }
+    
+    var numbers = S.components(separatedBy: ["-", " "]).joined()
+    
+    let n = numbers.count / 3
+    print(n)
+    for i in 0..<n - 1 {
+        numbers.insert("-", at: numbers.index(numbers.startIndex,
+                                              offsetBy: (i * 3 + i + 3)))
+    }
+    
+    if (numbers.count - (n - 1)) % 3  != 0 {
+        numbers.insert("-", at: numbers.index(numbers.endIndex,
+                                              offsetBy: -2))
+    }
+    
+    return numbers
+}
+*/
+
+func solution(_ S: String) -> String {
+    
+    // removing spaces and dashed
+    let noSpace = S.replacingOccurrences(of: " ", with: "")
+    let noSpaceNoDash = noSpace.replacingOccurrences(of: "-", with: "")
+    
+    // looping through char-by-char append dashes
+    var result = ""
+    var count = -2
+    
+    for n in noSpaceNoDash {
+        result.append(n)
+        if count % 3 == 0 {
+            result.append("-")
+        }
+        count += 1
+    }
+    
+    if result.last == "-" {
+        result = String(result.dropLast())  // Substring -> String 변환
+    }
+    
+    // if second last char has a dash (-x)
+    // reformat last three chars to (-xx)
+    var chars = Array(result)   // string -> array
+    let secondLastIndex = chars.count - 2
+    if chars[secondLastIndex] == "-" {
+        chars[secondLastIndex] = chars[secondLastIndex - 1]
+        chars[secondLastIndex - 1] = "-"
+    }
+    
+    
+    return String(chars)
 }
 
 solution("123456789")           // 123-456-789
