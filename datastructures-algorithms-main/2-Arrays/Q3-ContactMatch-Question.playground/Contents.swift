@@ -41,7 +41,7 @@ import Foundation
 
 public func solution(_ A : [String], _ B : [String], _ P : String) -> String {
     var result = [String]()
-    
+      
     // loop through looking for match - when found add to result
     for i in 0..<B.count {
         if B[i].contains(P) {
