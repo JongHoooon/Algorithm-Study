@@ -8,7 +8,7 @@ class Node {
     var data: Int
     var next: Node?
     
-    init(_ data: Int, _ next: Node? = nil) {
+    init(_ data: Int, _ next: Node? = nil) { 
         self.data = data
         self.next = next
     }
