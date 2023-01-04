@@ -12,6 +12,8 @@ import UIKit
  1 2 3      5
      \_____/
  
+ 1 -> 2 -> 3 -> 4 -> 5
+ 
  */
 
 class Node {
@@ -24,8 +26,50 @@ class Node {
     }
 }
 
+func length(_ head: Node?) -> Int {
+    if head == nil {
+        return 0
+    }
+    
+    var len = 0
+    var current = head
+    while current != nil {
+        len += 1
+        current = current?.next
+    }
+    return len
+}
+
 func hasCycle(first: Node) -> Bool {
-    // here...
+    
+    /*
+    var dict = [Int?: Bool]()
+    var current: Node? = first
+
+    while current != nil {
+
+        if dict[current?.data] == true {
+            return true
+        } else {
+            print("\(current?.data): \(dict[current?.data])")
+            dict[current?.data] = true
+        }
+        current = current?.next
+    }
+    return false
+    */
+    
+    var slow: Node? = first
+    var fast: Node? = first
+    
+    while fast != nil && fast?.next != nil {
+        slow = slow?.next
+        fast = fast?.next?.next
+        
+        if slow?.data == fast?.data {
+            return true
+        }
+    }
     return false
 }
 

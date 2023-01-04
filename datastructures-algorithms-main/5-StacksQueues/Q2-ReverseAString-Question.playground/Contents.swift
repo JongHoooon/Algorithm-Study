@@ -8,9 +8,17 @@ import UIKit
  */
 
 func solution(_ text: String) -> String {
-    // Do your work here... 
-    return ""
+    var textArray = Array(text).reversed()
+//    var result = [Character]()
+    
+//    for i in textArray {
+//        result.append(<#T##newElement: Character##Character#>)
+//    }
+    
+     
+    
+    return String(textArray)
 }
 
-solution("abc") // bca
+solution("abc") // cba
 solution("Would you like to play a game?")

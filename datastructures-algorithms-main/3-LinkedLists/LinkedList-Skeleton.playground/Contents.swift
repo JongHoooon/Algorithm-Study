@@ -81,7 +81,7 @@ class LinkList {
             previousNode = nextNode
             nextNode = nextNode?.next
         }
-        
+
         previousNode?.next = nil
     }
     
@@ -90,7 +90,7 @@ class LinkList {
             deleteFirst()
             return
         }
-        
+
         var previousNode: Node?
         var currentNode = head
         for _ in 1...position {
@@ -109,13 +109,25 @@ class LinkList {
     }
     
     func printLinkedList() {
+//        guard var node = head else { return }
+//
+//        var result = [Int]()
+//        result.append(node.data)
+//
+//        while node.next != nil {
+//            result.append(node.next!.data)
+//            node = node.next!
+//        }
+//
+//        print(result)
+        
         guard var node = head else { return }
         
         var result = [Int]()
         result.append(node.data)
         
         while node.next != nil {
-            result.append(node.next!.data)
+            result.append(node.next.data)
             node = node.next!
         }
         
@@ -129,7 +141,7 @@ linkedList.addFront(3)
 linkedList.addFront(2)
 linkedList.addFront(1)
 
-//linkedList.printLinkedList()
+linkedList.printLinkedList()
 
 linkedList.addFront(4)
 linkedList.addBack(5)
