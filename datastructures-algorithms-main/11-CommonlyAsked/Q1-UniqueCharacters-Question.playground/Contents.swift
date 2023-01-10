@@ -12,6 +12,16 @@ import UIKit
  */
 
 func isUnique(_ text: String) -> Bool {
+    var foundChars = [Character: Bool]()
+    let chars = Array(text)
+    
+    for c in chars{
+        if foundChars[c] == nil {
+            foundChars[c] = true
+        } else {
+            return false
+        }
+    }
     return true
 }
 

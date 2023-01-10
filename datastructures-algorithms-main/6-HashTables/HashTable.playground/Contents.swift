@@ -158,5 +158,7 @@ hashTable.get("Sandra Dee")
 hashTable.get("Ted Baker")
 hashTable.get("Tim Lee")
 
+// using subscript
 hashTable["Kevin Flynn"] = "The grid"
 hashTable["Kevin Flynn"]
+

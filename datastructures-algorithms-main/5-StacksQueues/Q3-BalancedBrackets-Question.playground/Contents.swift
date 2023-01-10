@@ -20,8 +20,63 @@ import UIKit
 
 func isBalanced(s: String) -> String { // "{[()]}"
     // 🕹 Game on here
-    return "NO"
+    /*
+    let leftBrackets: [Character] = ["(", "{", "["]
+    let rightBrackets: [Character: Character] = ["(": ")",
+                                                 "{": "}",
+                                                 "[": "]"]
+    
+    var bracketArray = Array(s)
+    var leftBracketsStack = [Character]()
+    
+    for b in bracketArray {
+        if leftBrackets.contains(b) {
+            print(b)
+            leftBracketsStack.append(b)
+        } else {
+            guard let lastLeftBracket = leftBracketsStack.last else { return "NO" }
+            
+            if rightBrackets[lastLeftBracket] == b {
+                leftBracketsStack.popLast()
+            } else {
+                return "NO"
+            }
+        }
+    }
+    
+    return "Yes"    // 오른쪽 괄호가 더 많은경우도 생각해야한다. isEmpty 사용해서 삼항연산자 사용
+     */
+    
+    var st = [Character]()
+    
+    for c in s {
+        switch c {
+        case "{", "(", "[":
+            st.append(c)
+        case "}":
+            if (st.isEmpty || st.last != "{") {
+                return "NO"
+            }
+            st.popLast()
+        case ")":
+            if (st.isEmpty || st.last != "(") {
+                return "NO"
+            }
+            st.popLast()
+        case "]":
+            if (st.isEmpty || st.last != "[") {
+                return "NO"
+            }
+            st.popLast()
+            
+        default:
+            print("breaking \(c)")
+        }
+    }
+    
+    return st.isEmpty ? "Yes" : "No"
 }
+
 
 isBalanced(s: "{[()]}") // Yes
 isBalanced(s: "[()]}") // No

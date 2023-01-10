@@ -8,16 +8,28 @@ import UIKit
  */
 
 func solution(_ text: String) -> String {
+    /*
     var textArray = Array(text).reversed()
-//    var result = [Character]()
-    
-//    for i in textArray {
-//        result.append(<#T##newElement: Character##Character#>)
-//    }
-    
-     
     
     return String(textArray)
+    */
+    
+    
+    var chars = Array(text)
+    
+    // Create stack
+    var result = [String]()
+    
+    // Push chars
+    for c in chars {
+        result.append(String(c))
+    }
+    
+    // Pop chars
+    for i in 0..<result.count {
+        chars[i] = Character(result.popLast()!)
+    }
+     return String(chars)
 }
 
 solution("abc") // cba
