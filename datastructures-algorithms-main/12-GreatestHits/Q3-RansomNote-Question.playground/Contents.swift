@@ -18,10 +18,43 @@ import UIKit
  */
 
 func canWrite(note: String, letters: String) -> Bool {
-    return false
+    
+    let noteMap = map(note.replacingOccurrences(of: " ", with: ""))
+    let letterMap = map(letters)
+    
+    for (key, _) in noteMap {
+        if letterMap[key] == nil {
+            return false
+        }
+        
+        let noteCount = noteMap[key]!
+        let letterCount = letterMap[key]!
+        
+        if letterCount < noteCount {
+            return false
+        }
+    }
+    return true
+}
+
+func map(_ text: String) -> [Character: Int] {
+    var map = [Character: Int]()
+    var chars = Array(text)
+    
+    for c in chars {
+        if map[c] == nil {
+            map[c] = 1
+        } else {
+            map[c]! += 1
+        }
+    }
+    return map
 }
 
 canWrite(note: "Pay", letters: "yaP")
 canWrite(note: "Pay", letters: "yaP a")
 canWrite(note: "Pay me $1000", letters: "ayPem0001$")
 canWrite(note: "Pay", letters: "Pa")
+
+
+

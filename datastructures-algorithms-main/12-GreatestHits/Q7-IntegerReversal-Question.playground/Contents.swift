@@ -14,7 +14,23 @@ import UIKit
  */
 
 func reverse(_ x: Int) -> Int {
-    return 0
+    var x = x
+    let isNegative = x < 0
+    
+    if isNegative {
+        x = abs(x)
+    }
+    
+    var reverse = 0
+    var lastDigit = 0
+    
+    while x >= 1 {
+        lastDigit = x % 10
+        reverse = reverse * 10 + lastDigit
+        x = x / 10
+    }
+    return isNegative ? reverse * -1 : reverse
+    
 }
 
 reverse(123)    // 321

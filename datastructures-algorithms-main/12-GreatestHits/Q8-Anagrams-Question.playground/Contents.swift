@@ -17,8 +17,34 @@ import UIKit
  */
 
 func isAnagram(_ text: String, _ anagram: String) -> Bool {
-    return false
+    
+    let textDict = makeCharCountDict(text)
+    let anagrmaDict = makeCharCountDict(anagram)
+    
+    guard textDict.count == anagrmaDict.count else { return false }
+    
+    for (key, value) in textDict {
+        if value != anagrmaDict[key] {
+            return false
+        }
+    }
+    return true
 }
+
+func makeCharCountDict(_ text: String) -> [Character: Int] {
+    var chars = Array(text)
+    var result = [Character: Int]()
+    
+    for c in chars {
+        if result[c] == nil {
+            result[c] = 1
+        } else {
+            result[c]! += 1
+        }
+    }
+    return result
+}
+
 
 isAnagram("arc", "car")         // true
 isAnagram("night", "thing")     // true
