@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ehx-aJ-tdS">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Adding numbers-->
+        <scene sceneID="TLg-Vo-Otq">
+            <objects>
+                <viewController storyboardIdentifier="NumbersViewController" id="ehx-aJ-tdS" customClass="NumbersViewController" customModule="CombineTutorial_example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="m0W-Q9-1Jl"/>
+                        <viewControllerLayoutGuide type="bottom" id="fgk-8q-qrl"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cqq-vc-OxO">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="749"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2sQ-tK-E3S">
+                                <rect key="frame" x="148" y="283.66666666666669" width="97" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="5IN-sm-LXW"/>
+                                    <constraint firstAttribute="width" constant="97" id="65L-V6-gMD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="2" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SN6-e7-nSs">
+                                <rect key="frame" x="148" y="321.66666666666669" width="97" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="cGA-g4-zYc"/>
+                                    <constraint firstAttribute="width" constant="97" id="hRf-qH-XNG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="3" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="heO-dV-lbt">
+                                <rect key="frame" x="148" y="359.66666666666669" width="97" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="97" id="NmI-gd-dfG"/>
+                                    <constraint firstAttribute="height" constant="30" id="e9P-PL-8G6"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="39v-hd-i1H">
+                                <rect key="frame" x="129" y="364.33333333333331" width="11" height="20.333333333333314"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qap-cp-qJY" userLabel="Separator">
+                                <rect key="frame" x="129" y="397.66666666666669" width="116" height="1"/>
+                                <color key="backgroundColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="DEn-p9-5RV"/>
+                                    <constraint firstAttribute="width" constant="116" id="Wfa-W8-Pod"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-1" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QDr-9c-nyY">
+                                <rect key="frame" x="129" y="406.66666666666669" width="116" height="20.333333333333314"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="iEW-gu-JTz"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="qap-cp-qJY" firstAttribute="top" secondItem="heO-dV-lbt" secondAttribute="bottom" constant="8" id="09Z-qz-PA0"/>
+                            <constraint firstItem="heO-dV-lbt" firstAttribute="top" secondItem="SN6-e7-nSs" secondAttribute="bottom" constant="8" id="1jK-Sg-mfV"/>
+                            <constraint firstItem="qap-cp-qJY" firstAttribute="trailing" secondItem="heO-dV-lbt" secondAttribute="trailing" id="3wP-fa-Ylh"/>
+                            <constraint firstItem="QDr-9c-nyY" firstAttribute="leading" secondItem="qap-cp-qJY" secondAttribute="leading" id="57o-k2-6hD"/>
+                            <constraint firstItem="heO-dV-lbt" firstAttribute="trailing" secondItem="SN6-e7-nSs" secondAttribute="trailing" id="ATy-WW-v8y"/>
+                            <constraint firstItem="SN6-e7-nSs" firstAttribute="top" secondItem="2sQ-tK-E3S" secondAttribute="bottom" constant="8" id="KyE-At-Pcr"/>
+                            <constraint firstItem="SN6-e7-nSs" firstAttribute="trailing" secondItem="2sQ-tK-E3S" secondAttribute="trailing" id="hyG-1R-xnd"/>
+                            <constraint firstItem="QDr-9c-nyY" firstAttribute="trailing" secondItem="qap-cp-qJY" secondAttribute="trailing" id="mX1-CS-vRr"/>
+                            <constraint firstItem="heO-dV-lbt" firstAttribute="leading" secondItem="39v-hd-i1H" secondAttribute="trailing" constant="8" id="qGF-q9-N1V"/>
+                            <constraint firstItem="QDr-9c-nyY" firstAttribute="top" secondItem="qap-cp-qJY" secondAttribute="bottom" constant="8" id="ugl-mH-sUR"/>
+                            <constraint firstItem="heO-dV-lbt" firstAttribute="centerY" secondItem="cqq-vc-OxO" secondAttribute="centerY" id="wZZ-n6-4En"/>
+                            <constraint firstItem="39v-hd-i1H" firstAttribute="centerY" secondItem="heO-dV-lbt" secondAttribute="centerY" id="wdy-hA-Iah"/>
+                            <constraint firstItem="heO-dV-lbt" firstAttribute="centerX" secondItem="cqq-vc-OxO" secondAttribute="centerX" id="xu4-cP-BHX"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Adding numbers" id="4tw-gs-da7"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="number1" destination="2sQ-tK-E3S" id="JxV-FN-j8k"/>
+                        <outlet property="number2" destination="SN6-e7-nSs" id="0dM-hb-QkO"/>
+                        <outlet property="number3" destination="heO-dV-lbt" id="Mcy-lN-FnS"/>
+                        <outlet property="result" destination="QDr-9c-nyY" id="hmV-i9-h0X"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kxr-8U-3FT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="291" y="-249"/>
+        </scene>
+    </scenes>
+</document>
