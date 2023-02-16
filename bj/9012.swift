@@ -18,5 +18,5 @@ func solution(_ chars: [Character]) -> String {
             stack.popLast()
         }
     }
-    return("YES")
+    return stack.isEmpty ? "YES" : "NO"
 }
