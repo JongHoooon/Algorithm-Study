@@ -32,7 +32,6 @@ struct Heap<T: Comparable> {
         let result = nodes.removeLast()
         var index = 0
         
-
         while index < nodes.count { 
             let leftChild = index * 2 + 1
             let rightChild = leftChild + 1
