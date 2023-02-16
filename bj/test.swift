@@ -22,6 +22,9 @@ struct Heap<T: Comparable> {
         }
     }
 
+
+    
+
     mutating func delete() -> T {
         
         if nodes.count == 1 {
