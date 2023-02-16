@@ -174,3 +174,7 @@ import Foundation
 let chars: [Character] = ["c","c"]
 print(String(chars))
 let a: String = String(chars)
+
+//for i in 3...1 {
+//    print(i)
+}
