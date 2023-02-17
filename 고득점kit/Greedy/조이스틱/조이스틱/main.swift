@@ -171,14 +171,28 @@ import Foundation
 //     }
 //}
 
-let chars: [Character] = ["c","c"]
-print(String(chars))
-let a: String = String(chars)
 
-////for i in 3...1 {
-////    print(i)
-//}
+import Foundation
 
-var arr = [1, 2]
-arr.insert(3, at: 2)
-print(arr)
+var left = Array(readLine()!)
+var right: [Character] = []
+let n = Int(readLine()!)!
+
+for _ in 0..<n {
+    let edit = readLine()!
+    switch edit {
+    case "L":
+        if let c = left.popLast() {
+            right.append(c)
+        }
+    case "D":
+        if let c = right.popLast() {
+            left.append(c)
+        }
+    case "B":
+        left.popLast()
+    default:
+        left.append(edit.last!)
+    }
+}
+print(String(left+right.reversed()))
