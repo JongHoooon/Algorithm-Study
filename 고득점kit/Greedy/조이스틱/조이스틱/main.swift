@@ -175,6 +175,10 @@ let chars: [Character] = ["c","c"]
 print(String(chars))
 let a: String = String(chars)
 
-//for i in 3...1 {
-//    print(i)
-}
+////for i in 3...1 {
+////    print(i)
+//}
+
+var arr = [1, 2]
+arr.insert(3, at: 2)
+print(arr)
