@@ -172,27 +172,7 @@ import Foundation
 //}
 
 
-import Foundation
-
-var left = Array(readLine()!)
-var right: [Character] = []
-let n = Int(readLine()!)!
-
-for _ in 0..<n {
-    let edit = readLine()!
-    switch edit {
-    case "L":
-        if let c = left.popLast() {
-            right.append(c)
-        }
-    case "D":
-        if let c = right.popLast() {
-            left.append(c)
-        }
-    case "B":
-        left.popLast()
-    default:
-        left.append(edit.last!)
-    }
-}
-print(String(left+right.reversed()))
+var arr1 = [1, 2, 3]
+var arr2 = [4, 5, 6]
+arr1.append(contentsOf: arr2)
+print(arr1)
