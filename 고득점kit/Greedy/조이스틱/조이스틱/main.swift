@@ -171,8 +171,16 @@ import Foundation
 //     }
 //}
 
+import Foundation
 
-var arr1 = [1, 2, 3]
-var arr2 = [4, 5, 6]
-arr1.append(contentsOf: arr2)
-print(arr1)
+let n = Int(readLine()!)!
+let arr: [Int] = readLine()!.components(separatedBy: " ").map { Int($0)! }
+
+var result: [Int] = Array(repeating: -1, count: n)
+var stack: [(Int, Int)] = []
+
+
+
+for n in result {
+    print(n, terminator: " ")
+}
