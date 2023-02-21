@@ -1,2 +1,2 @@
 
-func NGF(_ n: String) -> Int {
+print(String(format: "%.2f", stack[0]))
