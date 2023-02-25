@@ -9,12 +9,12 @@ var inOrderArr = [Character]()
 var postOrderArr = [Character]()
 
 for _ in 0..<n {
-    let input = readLine()!.components(separatedBy: " ").map {
-        if $0 == "." {
-            return -1
+    let input = readLine()!.components(separatedBy: " ").map { n -> Int in
+        if n == "." { 
+            return -1 
         } else {
-            return Int(Character($0).asciiValue! - 65)
-        }
+            return Int(Character(n).asciiValue! - 65)
+        } 
     }
     binaryTree[input[0]] = Array(input[1...2])
 }
@@ -27,14 +27,14 @@ print(String(inOrderArr))
 print(String(postOrderArr))
 
 
-func preOrderSearch(_ node: Int) {
+func preOrderSearch(_ node: Int) { 
     visit[node] = true
     preOrderArr.append(Character(UnicodeScalar(node+65)!))
     for i in 0..<2 {
         if binaryTree[node][i] == -1 {
             continue
         }
-        if visit[binaryTree[node][i]] == true {
+        if visit[binaryTree[node][i]] == true { 
             continue
         }
         preOrderSearch(binaryTree[node][i])
