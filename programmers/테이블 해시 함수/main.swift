@@ -25,4 +25,4 @@ func solution(_ data:[[Int]], _ col:Int, _ row_begin:Int, _ row_end:Int) -> Int 
     return arr.reduce(0, ^)
 }
 
-solution([[2,2,6],[1,5,10],[4,2,9],[3,8,3]], 2, 2, 3)
+print(solution([[2,2,6],[1,5,10],[4,2,9],[3,8,3]], 2, 2, 3))
