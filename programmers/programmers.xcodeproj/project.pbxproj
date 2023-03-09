@@ -203,6 +203,8 @@
 		ED1BE41729B76235004FB8D6 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = main.swift; path = "../숫자 카드 나누기/main.swift"; sourceTree = "<group>"; };
 		ED1BE42029B779FE004FB8D6 /* 우박수열 정적분 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "우박수열 정적분"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED1BE42229B779FF004FB8D6 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = main.swift; path = "../우박수열 정적분/main.swift"; sourceTree = "<group>"; };
+		ED2805C829B830D000BAE487 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		ED2805D329B830DB00BAE487 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		ED6BD48A29B703CE0051CD40 /* 유사 칸토어 비트열 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "유사 칸토어 비트열"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED6BD48C29B703CE0051CD40 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = main.swift; path = "../유사 칸토어 비트열/main.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -342,6 +344,8 @@
 				ED1BE40B29B75CCE004FB8D6 /* 테이블 해시 함수 */,
 				ED1BE41629B76235004FB8D6 /* 숫자 카드 나누기 */,
 				ED1BE42129B779FF004FB8D6 /* 우박수열 정적분 */,
+				ED2805C729B830D000BAE487 /* test */,
+				ED2805D229B830DB00BAE487 /* test2 */,
 				ED05D13129B32C5A00BA286C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -487,6 +491,22 @@
 				ED1BE42229B779FF004FB8D6 /* main.swift */,
 			);
 			path = "우박수열 정적분";
+			sourceTree = "<group>";
+		};
+		ED2805C729B830D000BAE487 /* test */ = {
+			isa = PBXGroup;
+			children = (
+				ED2805C829B830D000BAE487 /* main.swift */,
+			);
+			path = test;
+			sourceTree = "<group>";
+		};
+		ED2805D229B830DB00BAE487 /* test2 */ = {
+			isa = PBXGroup;
+			children = (
+				ED2805D329B830DB00BAE487 /* main.swift */,
+			);
+			path = test2;
 			sourceTree = "<group>";
 		};
 		ED6BD48B29B703CE0051CD40 /* 유사 칸토어 비트열 */ = {
