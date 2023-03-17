@@ -1,7 +1,8 @@
 import sys
 from collections import deque
 
-sys.setrecursionlimit(10 ** 9)
+sys.setrecursionlimit(10000)
+input = sys.stdin.readline
 
 N, M = map(int, input().split())
 graph = [[] for _ in range(N+1)]
@@ -28,6 +29,6 @@ count = 0
 for i in range(1, N+1):
     if not(isVisited[i]):
         count += 1
-        bfs(i)
-        
+        bfs(i)    
+    
 print(count)
