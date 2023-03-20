@@ -5,8 +5,86 @@
 //  Created by JongHoon on 2023/03/05.
 //
 
-import Foundation
+//import Foundation
 
+func solution(_ maps:[String]) -> Int {
+    let countOfLows: Int = maps.count
+    let countOfColumns: Int = maps[0].count
+    let dx: [Int] = [-1, 1, 0, 0]
+    let dy: [Int] = [0, 0, -1, 1]
+    var start: (Int, Int) = (0, 0)
+    var exit: (Int, Int) = (0, 0)
+    var lever: (Int, Int) = (0, 0)
+    var arrOfMap: [[Character]] = []
+    
+    for (i, low) in maps.enumerated() {
+        let low = Array(low)
+        
+        if let j = low.firstIndex(of: "S") {
+            start = (i, j)
+        }
+        if let j = low.firstIndex(of: "E") {
+            exit = (i, j)
+        }
+        if let j = low.firstIndex(of: "L") {
+            lever = (i, j)
+        }
+        arrOfMap.append(low)
+    }
+    
+    func bfs(start: (Int, Int), end: (Int, Int)) -> Int {
+        var distances: [[Int]] = Array(
+            repeating: Array(repeating: -1, count: countOfColumns),
+            count: countOfLows
+        )
+        var queue: [(Int, Int)] = [start]
+        distances[start.0][start.1] = 0
+        
+        while !queue.isEmpty {
+            
+            let currentLocation = queue.removeFirst()
+            for i in dx.indices {
+                let nx = currentLocation.0 + dx[i]
+                let ny = currentLocation.1 + dy[i]
+                guard 0..<countOfLows ~= nx && 0..<countOfColumns ~= ny &&
+                        arrOfMap[nx][ny] != "X" && distances[nx][ny] == -1 else { continue }
+                
+                distances[nx][ny] = distances[currentLocation.0][currentLocation.1] + 1
+                queue.append((nx, ny))
+                
+                if (nx, ny) == end {
+                    return distances[nx][ny]
+                }
+            }
+        }
+        return -1
+    }
+    
+    let distanceSToL: Int = bfs(start: start, end: lever)
+    let distanceLToE: Int = bfs(start: lever, end: exit)
+    
+    return distanceSToL == -1 || distanceLToE == -1 ? -1 : distanceSToL + distanceLToE
+}
+
+
+print(solution(["SOOOL","XXXXO","OOOOO","OXXXX","OOOOE"]))
+
+print(solution(["LOOXS","OOOOX","OOOOO","OOOOO","EOOOO"]))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 func solution(_ maps:[String]) -> Int {
     
     let dx = [0, 0, -1, 1]
@@ -59,6 +137,9 @@ func solution(_ maps:[String]) -> Int {
 
 
 print(solution(["SOOOL","XXXXO","OOOOO","OXXXX","OOOOE"]))
+ */
+
+
 //print(solution(["LOOXS","OOOOX","OOOOO","OOOOO","EOOOO"]))
 
 

@@ -5,7 +5,35 @@
 //  Created by JongHoon on 2023/03/04.
 //
 
-import Foundation
+//import Foundation
+
+func solution(_ n:Int, _ m:Int, _ section:[Int]) -> Int {
+    var section: [Int] = section
+    var answer: Int = 0
+
+    while !section.isEmpty {
+        answer += 1
+        let first = section.removeFirst()
+        for wall in section {
+            if wall < first + m {
+                let _ = section.removeFirst()
+            } else {
+                break
+            }
+        }
+    }
+
+    return answer
+}
+
+print(solution(4, 1, [1,2,3,4]))
+
+    
+    
+    
+    
+    
+    
 
 /*
 func solution(_ n:Int, _ m:Int, _ section:[Int]) -> Int {
@@ -42,6 +70,7 @@ func solution(_ n:Int, _ m:Int, _ section:[Int]) -> Int {
 }
 */
 
+/*
 func solution(_ n:Int, _ m:Int, _ section:[Int]) -> Int {
     var section = section
     var count = 0
@@ -60,3 +89,4 @@ func solution(_ n:Int, _ m:Int, _ section:[Int]) -> Int {
     }
     return count
 }
+*/
