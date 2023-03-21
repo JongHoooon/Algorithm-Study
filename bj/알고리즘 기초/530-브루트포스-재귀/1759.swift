@@ -1,4 +1,8 @@
 
+/*
+시간 복잡도: O(C^L)
+공간 복잡도: O(L)
+*/
 let LC: [Int] = readLine()!
     .split(separator: " ")
     .map { Int($0)! }
@@ -14,30 +18,31 @@ var characters: [String] = readLine()!
 let vowels: [String] = ["a", "e", "i", "o", "u"]
 var answer: [String] = []
 
-func backTracking(depth: Int, count: Int) { 
+func backTracking(index: Int, count: Int) { 
 
-    if depth == L {
+    if index == L {
         var countOfVowels: Int = 0
         var countOfConsonant: Int = 0
-        
-        for s in answer { 
-            if vowels.contains(s) { 
-                countOfVowels += 1
-            } else { 
-                countOfConsonant += 1 
-            }
+
+        for s: String in answer {                           
+            if vowels.contains(s) { countOfVowels += 1 }    
+            else { countOfConsonant += 1 }
         }
-        if countOfVowels >= 1 && countOfConsonant >= 2 {
-            print(answer.joined()) 
+
+        if countOfVowels >= 1 && countOfConsonant >= 2 {    
+            print(answer.joined())
         }
-        return
+        return 
     }
 
-    for i in count..<C { 
+    for i: Int in count..<C {                               
         answer.append(characters[i])
-        backTracking(depth: depth+1, count: i+1)
+        backTracking(index: index+1, count: i+1)
         answer.removeLast()
     }
 }
 
-backTracking(depth: 0, count: 0)
+backTracking(index: 0, count: 0)
+
+
+
