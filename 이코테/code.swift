@@ -1,13 +1,34 @@
-//
-//  main.swift
-//  문자열 내 p와 y의 개수
-//
-//  Created by JongHoon on 2023/01/21.
-//
-
-import Foundation
 
 
+/*
+for i in 0..<array.count {
+    var minIndex = i
+    for j in i+1..<array.count {
+        if array[minIndex] > array[j] {
+            minIndex = j
+        }
+    }
+    array.swapAt(i, minIndex)   
+}
+
+print(array)
+*/
+
+/*
+for i in 0..<array.count {
+    for j in stride(from: i, to: 0, by: -1) {
+        if array[j-1] > array[j] {
+            array.swapAt(j-1, j)
+        } else {
+            break
+        }
+    }
+}
+
+print(array)
+*/
+
+/*
 var array: [Int] = [7, 5, 9, 0, 3, 1, 6, 2, 4, 8]
 
 func quickSort(start: Int, end: Int) {
@@ -39,3 +60,17 @@ func quickSort(start: Int, end: Int) {
 
 quickSort(start: 0, end: array.count-1)
 print(array)
+*/
+
+let array: [Int] = [7, 5, 9, 0, 3, 1, 6, 2, 9, 1, 4, 8, 0, 5, 2]
+var counter: [Int] = Array(repeating: 0, count: array.count+1)
+
+for i in 0..<array.count { 
+    counter[array[i]] += 1
+}
+
+for i in 0..<counter.count {
+    for _ in 0..<counter[i] {
+        print(i, terminator: " ")
+    }
+}
