@@ -155,6 +155,10 @@ for i in 0..<N {
 print(count)
 ```
 
+<br><br>
+
+## 미로 탈출
+
 ```python
 """
 Python

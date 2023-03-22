@@ -93,8 +93,7 @@ for _ in range(N):
 
 def bfs(x, y):
     distances[x][y] = 1
-    queue = deque()
-    queue.append((x, y))
+    queue = deque([(x, y)])
     
     while queue: 
         qx, qy = queue.popleft()
@@ -114,3 +113,6 @@ print(distances[N-1][M-1])
             
 
 # print(not 1 < 3 < 6 or not 0 < 33 < 9)
+
+
+

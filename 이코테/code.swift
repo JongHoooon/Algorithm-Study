@@ -152,6 +152,7 @@ func dfs(v: Int) {
 dfs(v: 1)
 */
 
+/*
 let NM: [Int] = readLine()!
     .split(separator: " ")
     .map { Int($0)! }
@@ -196,3 +197,125 @@ for i in 0..<N {
 }
 
 print(count)
+
+*/
+
+/*
+func binarySearch(array: [Int], target: Int, start: Int, end: Int) -> Int? { 
+    if start > end { return nil }
+    
+    let mid: Int = (start + end) / 2
+    if array[mid] == target { return mid }
+
+    else if array[mid] < target {
+        return binarySearch(array: array, target: target, start: mid+1, end: end)
+    } else {
+        return binarySearch(array: array, target: target, start: start, end: mid-1)
+    }
+}
+
+let array: [Int] = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
+
+print(binarySearch(array: array, target: 7, start: 0, end: array.count-1))
+*/
+
+
+
+/*
+func binarySearch(array: [Int], target: Int) -> Int? {
+    
+    var start: Int = 0
+    var end: Int = array.count - 1
+    
+    while start <= end { 
+        let mid: Int = (start + end) / 2
+        if array[mid] == target { return mid }
+
+        if array[mid] > target { 
+            end = mid - 1
+        } else { 
+            start = mid + 1
+        }
+    }
+    return nil
+}
+
+let array: [Int] = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
+if let result: Int = binarySearch(array: array, target: 7) { 
+    print(result)
+} else { 
+    print("값이 존해하지 않습니다.")
+}
+*/
+
+/*
+let NM: [Int] = readLine()!
+    .split(separator: " ")
+    .map { Int($0)! }
+
+let N: Int = NM[0]
+let M: Int = NM[1]
+let array: [Int] = readLine()!
+    .split(separator: " ")
+    .map { Int($0)! }
+
+var mid: Int = 0
+func binarySearch(start: Int, end: Int, target: Int) { 
+    if start >= end { return }
+
+    mid = (start + end) / 2
+    var sum: Int = 0
+    for e in array { 
+        if e > mid { sum += e - mid }
+    }
+    if sum == target { return }
+    if sum < target { 
+        binarySearch(start: start, end: mid-1, target: target)
+    } else {
+        binarySearch(start: mid+1, end: end, target: target)
+    }
+}
+
+binarySearch(start: 0, end: array.max()!, target: M)
+print(mid)
+*/
+
+let Nx: [Int] = readLine()!
+    .split(separator: " ")
+    .map { Int($0)! }
+let arr: [Int] = readLine()!
+    .split(separator: " ")
+    .map { Int($0)! }
+
+let N: Int = Nx[0]
+let x: Int = Nx[1]
+
+var mid: Int = 0
+func binarySearchFirst(start: Int, end: Int, target: Int) -> Int {
+    mid = (start + end) / 2
+    if start >= end {       
+        return arr[mid] == target ? mid : -1
+    }
+    if arr[mid] >= target { 
+        return binarySearchFirst(start: start, end: mid-1, target: target)
+    } else {
+        return binarySearchFirst(start: mid+1, end: end, target: target)
+    }
+}
+
+func binarySearchSecond(start: Int, end: Int, target: Int) -> Int { 
+    if start >= end {      
+        return arr[mid] == target ? mid : -1
+    }
+    mid = (start + end) / 2
+    if arr[mid] > target { 
+        return binarySearchSecond(start: start, end: mid-1, target: target)
+    } else {
+        return binarySearchSecond(start: mid+1, end: end, target: target)
+    }
+}
+
+let i1: Int = binarySearchFirst(start: 0, end: arr.count-1, target: x)
+let i2: Int = binarySearchSecond(start: 0, end: arr.count-1, target: x)
+
+print(i1 == -1 ? -1 : i2 - i1 + 1)
