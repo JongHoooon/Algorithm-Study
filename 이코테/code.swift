@@ -62,6 +62,7 @@ quickSort(start: 0, end: array.count-1)
 print(array)
 */
 
+/*
 let array: [Int] = [7, 5, 9, 0, 3, 1, 6, 2, 9, 1, 4, 8, 0, 5, 2]
 var counter: [Int] = Array(repeating: 0, count: array.count+1)
 
@@ -74,3 +75,29 @@ for i in 0..<counter.count {
         print(i, terminator: " ")
     }
 }
+*/
+
+func solution(_ n: Int) {
+    var count: Int = 0
+
+    for i in 0..<3600 { 
+        var str: String = ""
+        str.append("\(i/60)")
+        str.append("\(i%60)")
+        if str.contains("3") { 
+            count += 1
+        }
+    }
+
+    var answer: Int = 0
+    for i in 0...n {
+        if i == 3 { 
+            answer += 3600
+        } else { 
+            answer += count
+        }
+    }
+    print(answer)
+}
+
+solution(5)
