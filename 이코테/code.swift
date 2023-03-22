@@ -77,6 +77,7 @@ for i in 0..<counter.count {
 }
 */
 
+/*
 func solution(_ n: Int) {
     var count: Int = 0
 
@@ -101,3 +102,97 @@ func solution(_ n: Int) {
 }
 
 solution(5)
+*/
+
+// let graph: [[Int]] = [
+//     [],
+//     [2, 3, 8],
+//     [1, 7],
+//     [1, 4, 5],
+//     [3, 5],
+//     [3, 4],
+//     [7],
+//     [2, 6, 8],
+//     [1, 7]
+// ]
+
+
+// var visited: [Bool] = Array(repeating: false, count: 9)
+
+// func bfs(v: Int) { 
+//     var queue: [Int] = [v]
+//     visited[v] = true
+
+//     while !queue.isEmpty {
+//         let node: Int = queue.removeFirst()
+//         print(node, terminator: " ")
+//         for next in graph[node] { 
+//             if !visited[next] {
+//                 queue.append(next)
+//                 visited[next] = true
+//             }
+//         }
+//     }
+// }
+
+// bfs(v: 1)
+
+/*
+func dfs(v: Int) { 
+    visited[v] = true
+    print(v, terminator: " ")
+
+    for n in graph[v] {
+        if !visited[n] {
+            dfs(v: n)
+        }
+    }
+}
+
+dfs(v: 1)
+*/
+
+let NM: [Int] = readLine()!
+    .split(separator: " ")
+    .map { Int($0)! }
+
+let N: Int = NM[0]
+let M: Int = NM[1]
+let dx: [Int] = [1, -1, 0, 0]
+let dy: [Int] = [0, 0, -1, 1]
+var graph: [[Int]] = []
+var isVisited: [[Bool]] = Array(
+    repeating: Array(repeating: false, count: M),
+    count: N
+    )
+
+for _ in 0..<N {
+    let input: [Int] = Array(readLine()!)
+        .map { Int(String($0))! }
+        
+    graph.append(input)
+}
+
+func dfs(x: Int, y: Int) {
+    isVisited[x][y] = true
+
+    for i in dx.indices {
+        let nx: Int = x + dx[i]
+        let ny: Int = y + dy[i]
+        guard 0..<N ~= nx && 0..<M ~= ny &&
+            graph[nx][ny] == 0 &&
+            !isVisited[nx][ny] else { continue }
+        dfs(x: nx, y: ny)
+    }
+}
+
+var count: Int = 0
+for i in 0..<N {
+    for j in 0..<M {
+        if isVisited[i][j] || graph[i][j] == 1 { continue }
+        dfs(x: i, y: j)
+        count += 1
+    }
+}
+
+print(count)

@@ -25,6 +25,7 @@
 /* Begin PBXFileReference section */
 		ED291FB7297BAEEA00C7EF65 /* 문자열 내 p와 y의 개수 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "문자열 내 p와 y의 개수"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED291FBA297BAEEA00C7EF65 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		EDA29A9F29CB18D30097ECD7 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				ED291FBA297BAEEA00C7EF65 /* main.swift */,
+				EDA29A9F29CB18D30097ECD7 /* MyPlayground.playground */,
 			);
 			path = "문자열 내 p와 y의 개수";
 			sourceTree = "<group>";

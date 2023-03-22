@@ -8,34 +8,47 @@
 import Foundation
 
 
-var array: [Int] = [7, 5, 9, 0, 3, 1, 6, 2, 4, 8]
-
-func quickSort(start: Int, end: Int) {
-    if start >= end { return } // 원소가 1개인 경우 죵로
-    
-    let pivot: Int = start // 보통 첫 번째 원소로 피벗
-    var left: Int = pivot + 1
-    var right: Int = end
-    while left <= right {
-        // 피벗보다 큰 데이터를 찾을 때까지 반복
-        while left <= end && array[pivot] >= array[left] {
-            left += 1
-        }
-        // 피벗보다 작은 데이터를 찾을 때까지 반복
-        while right > start && array[pivot] <= array[right] {
-            right -= 1
-        }
-        // 엇갈렸다면 피벗보다 작은 데이터와 피벗 스왑
-        if left > right {
-            array.swapAt(pivot, right)
-        } else {
-        // 엇갈리지 않았다면 작은 데이터 와 큰 데이터를 교체
-        array.swapAt(left, right)
-        }
-    }
-    quickSort(start: start, end: right-1)
-    quickSort(start: right+1, end: end)
-}
-
-quickSort(start: 0, end: array.count-1)
-print(array)
+//let NM: [Int] = readLine()!
+//    .split(separator: " ")
+//    .map { Int($0)! }
+//
+//let N: Int = NM[0]
+//let M: Int = NM[1]
+//let dx: [Int] = [1, -1, 0, 0]
+//let dy: [Int] = [0, 0, -1, 1]
+//var graph: [[Int]] = []
+//var isVisited: [[Bool]] = Array(
+//    repeating: Array(repeating: false, count: M),
+//    count: N
+//)
+//
+//for _ in 0..<N {
+//    let input: [Int] = Array(readLine()!)
+//        .map { Int(String($0))! }
+//
+//    graph.append(input)
+//}
+//
+//func dfs(x: Int, y: Int) {
+//    isVisited[x][y] = true
+//
+//    for i in dx.indices {
+//        let nx: Int = x + dx[i]
+//        let ny: Int = y + dy[i]
+//        guard 0..<N ~= nx && 0..<M ~= ny &&
+//                graph[nx][ny] == 0 &&
+//                !isVisited[nx][ny] else { continue }
+//        dfs(x: nx, y: ny)
+//    }
+//}
+//
+//var count: Int = 0
+//for i in 0..<N {
+//    for j in 0..<M {
+//        if isVisited[i][j] || graph[i][j] == 1 { continue }
+//        dfs(x: i, y: j)
+//        count += 1
+//    }
+//}
+//
+//print(count)
