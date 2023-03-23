@@ -78,6 +78,7 @@ for key in sorted(counter.keys()):
         print(key, end=" ")
 """
 
+"""
 import sys
 from collections import deque
 input = sys.stdin.readline
@@ -113,6 +114,29 @@ print(distances[N-1][M-1])
             
 
 # print(not 1 < 3 < 6 or not 0 < 33 < 9)
+"""
+
+"""
+d = [0] * 100
+
+d[1] = 1
+d[2] = 1
+n = 99
+for i in range(3, n+1):
+    d[i] = d[i-1] + d[i-2]
+    
+print(d[n])
+"""
 
 
+for tc in range(int(input())):
+    n, m = map(int, input().split())
+    array = list(map(int, input().split()))
 
+    dp = []
+    index = 0
+    for i in range(n):
+        dp.append(array[index:index+m])
+        index += m
+
+    print(dp)

@@ -280,6 +280,7 @@ binarySearch(start: 0, end: array.max()!, target: M)
 print(mid)
 */
 
+/*
 let Nx: [Int] = readLine()!
     .split(separator: " ")
     .map { Int($0)! }
@@ -319,3 +320,166 @@ let i1: Int = binarySearchFirst(start: 0, end: arr.count-1, target: x)
 let i2: Int = binarySearchSecond(start: 0, end: arr.count-1, target: x)
 
 print(i1 == -1 ? -1 : i2 - i1 + 1)
+
+*/
+
+/*
+var dp: [Int] = Array(repeating: 0, count: 100)
+
+func fibo(n: Int) -> Int {
+    if n == 1 || n == 2 { return 1 }
+
+    if dp[n] != 0 { return dp[n] }
+
+    dp[n] = fibo(n: n-1) + fibo(n: n-2) 
+    return dp[n]
+}
+
+print(fibo(n: 99))
+*/
+
+/*
+var dp: [Int] = Array(repeating: 0, count: 100)
+
+dp[1] = 1
+dp[2] = 1
+let n: Int = 92
+
+for i in 3..<n+1 { 
+    dp[i] = dp[i-1] + dp[i-2]
+}
+
+print(dp[n])
+print(dp)
+*/
+
+/*
+let N: Int = Int(readLine()!)!
+
+let storages: [Int] = readLine()!
+    .split(separator: " ")
+    .map { Int($0)! }
+
+var dp: [Int] = Array(repeating: 0, count: N)
+dp[0] = storages[0]
+dp[1] = max(storages[0], storages[1])
+
+for i:Int in 2..<N { 
+    dp[i] = max(dp[i-1], dp[i-2]+storages[i])
+}
+
+print(dp[N-1])
+*/
+
+/*
+let X: Int = Int(readLine()!)!
+
+var dp: [Int] = Array(repeating: 0, count: X+1)
+
+for i: Int in 2..<X+1 { 
+    var nexts: [Int] = [dp[i-1]]
+    if i % 5 == 0 { nexts.append(dp[i/5]) }
+    if i % 3 == 0 { nexts.append(dp[i/3]) }
+    if i % 2 == 0 { nexts.append(dp[i/2]) }
+    dp[i] = nexts.min()! + 1
+} 
+
+print(dp[X])
+print(dp)
+*/
+
+/*
+let NM: [Int] = readLine()!
+    .split(separator: " ")
+    .map { Int($0)! }
+
+let N: Int = NM[0]
+let M: Int = NM[1]
+var coins: [Int] = Array(repeating: 0, count: N)
+var dp: [Int] = Array(repeating: -1, count: M+1)
+dp[0] = 0
+for i in 0..<N { 
+    coins[i] = Int(readLine()!)!
+}
+
+for i in 1..<M+1 { 
+    var nexts: [Int] = []
+    for c in coins { 
+        if i-c >= 0 && dp[i-c] != -1 { nexts.append(dp[i-c]) }
+    }
+    dp[i] = nexts.isEmpty ? -1 : nexts.min()!+1
+}
+
+print(dp[M])
+
+*/
+
+/*
+let T: Int = Int(readLine()!)!
+
+for _ in 0..<T {
+
+    let nm: [Int] = readLine()!
+        .split(separator: " ")
+        .map { Int($0)! }
+
+    let n: Int = nm[0]
+    let m: Int = nm[1]
+    var dp: [[Int]] = []
+
+    let arr: [Int] = readLine()!
+        .split(separator: " ")
+        .map { Int($0)! }
+
+    for i in 0..<n { 
+        dp.append(Array(arr[i*m..<(i+1)*m]))
+    }
+
+    for j in 1..<m { 
+        for i in 1..<n { 
+            var leftUp: Int = 0
+            var leftDown: Int = 0
+            var left: Int = 0
+
+            // 왼쪽위에서 오는 경우
+            if i == 0 { leftUp = 0 }
+            else { leftUp = dp[i-1][j-1] }
+
+            // 왼쪽아래에서 오는 경우
+            if i == n-1 { leftDown = 0 }
+            else { leftDown = dp[i+1][j-1] }
+
+            // 왼쪽에서 오는 경우
+            left = dp[i][j-1]
+
+            dp[i][j] = dp[i][j] + max(leftUp, leftDown, left)
+        }
+    }
+    var result: Int = 0
+    for i in 0..<n { 
+        result = max(result, dp[i][m-1])
+    }
+    print(result)
+}
+*/
+
+let N: Int = Int(readLine()!)!
+let soldiers: [Int] = readLine()!
+    .split(separator: " ")
+    .map { Int($0)! }
+    .reversed()
+
+var dp: [Int] = Array(repeating: 1, count: N)
+
+for i in 1..<N { 
+    for j in 0..<i { 
+        if soldiers[j] < soldiers[i] { 
+            dp[i] = max(dp[i], dp[j]+1)
+        }
+    }
+}
+
+print(N - dp.max()!)
+
+
+
