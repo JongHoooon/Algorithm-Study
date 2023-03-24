@@ -29,3 +29,10 @@
 5. 3, 4번을 반복한다.
 
 ### 우선순위 큐(Priority Queue)
+
+
+<br><br>
+
+## 참고
+
+- https://youtu.be/acqm9mM1P6o

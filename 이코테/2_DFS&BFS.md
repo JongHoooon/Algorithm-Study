@@ -197,3 +197,8 @@ bfs(0, 0)
 print(distances[N-1][M-1])
 ```
 
+<br><br>
+
+## 참고
+
+- https://youtu.be/7C9RgOcvkvo

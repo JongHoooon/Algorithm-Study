@@ -156,3 +156,9 @@ let i2: Int = binarySearchSecond(start: 0, end: arr.count-1, target: x)
 
 print(i1 == -1 ? -1 : i2 - i1 + 1)
 ```
+
+<br><br>
+
+## 참고
+
+- https://youtu.be/94RC-DsGMLo

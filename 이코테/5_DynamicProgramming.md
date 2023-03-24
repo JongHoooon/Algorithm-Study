@@ -213,3 +213,9 @@ for i in 1..<N {
 
 print(N - dp.max()!)
 ```
+
+<br><br>
+
+## 참고
+
+- https://youtu.be/5Lu34WIx2Us
