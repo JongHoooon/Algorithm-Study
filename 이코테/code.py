@@ -128,7 +128,7 @@ for i in range(3, n+1):
 print(d[n])
 """
 
-
+"""
 for tc in range(int(input())):
     n, m = map(int, input().split())
     array = list(map(int, input().split()))
@@ -140,3 +140,26 @@ for tc in range(int(input())):
         index += m
 
     print(dp)
+"""
+
+from heapq import heappush, heappop, heapify
+
+heap = []
+# heappush(heap, 4)
+# heappush(heap, 7)
+# heappush(heap, 1)
+# heappush(heap, 9)
+# heappush(heap,  2)
+
+# print(heap)
+
+# heappop(heap)
+
+# print(heap)
+
+nums = [4,3,2,76,8,4,1]
+hepa = nums[:]
+
+heapify(hepa)
+print(nums)
+print(hepa)

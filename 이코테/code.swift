@@ -463,6 +463,7 @@ for _ in 0..<T {
 }
 */
 
+/*
 let N: Int = Int(readLine()!)!
 let soldiers: [Int] = readLine()!
     .split(separator: " ")
@@ -480,6 +481,33 @@ for i in 1..<N {
 }
 
 print(N - dp.max()!)
+*/
 
+/*
+let nm: [Int] = readLine()!
+    .split(separator: " ")
+    .map { Int($0)! }
 
+// 노드의개수
+let n: Int = nm[0]
+// 간선의 개수
+let m: Int = nm[1]
 
+// 시작 노드 번호 입력받기
+let start: Int = Int(readLine()!)!
+
+var graph: [[Int]] = []
+var isVisited: [Bool] = Array(repeating: false , count: n+1)
+var distances: [Int] = Array(repeating: int.max, count: n+1)
+
+// 간선 정보 입력받기
+for _ in 0..<m { 
+    let input = readLine()!
+        .split(separator: " ")
+        .map { Int($0)! }
+
+    graph[]
+}
+*/
+
+print(Int(4.8))
