@@ -510,4 +510,81 @@ for _ in 0..<m {
 }
 */
 
-print(Int(4.8))
+/*
+func search(_ nums: [Int], _ target: Int) -> Int {
+    var left: Int = 0
+    var right: Int = nums.count - 1
+
+    while left <= right { 
+        let pivot = (left + right) / 2
+        if nums[pivot] == target { 
+            return pivot
+        } else if nums[pivot] < target {
+            left = pivot + 1
+        } else { 
+            right = pivot - 1
+        }
+    }
+    return -1
+}
+
+print(search([-1,0,3,5,9,12], 2))
+
+*/
+
+/*
+class Solution {
+    func moveZeroes(_ nums: inout [Int]) {
+        
+        var wIdx: Int = 0
+        for i in 0..<nums.count { 
+            if nums[i] != 0 {
+                nums.swapAt(wIdx, i)
+                wIdx += 1
+            }
+        }
+    }
+}
+*/
+
+
+/*
+func pivotIndex(_ nums: [Int]) -> Int {        
+    var rightSum: Int = nums.reduce(0, +)
+    var leftSum: Int = 0
+    var pastPivotNum = 0
+
+    for (i, num) in nums.enumerated() { 
+        leftSum += pastPivotNum
+        rightSum -= num
+
+        if leftSum == rightSum { 
+            return i
+        }
+        pastPivotNum = num
+    }
+    return -1
+}
+*/
+
+func minSubArrayLen(_ target: Int, _ nums: [Int]) -> Int {
+    var minLength: Int = Int.max
+    var leftIndex: Int = 0
+    var rightIndex: Int = 0
+    var currentSum: Int = 0
+
+    while rightIndex < nums.count { 
+        currentSum += nums[rightIndex]
+        rightIndex += 1
+
+        while leftIndex < rightIndex && currentSum >= target { 
+            currentSum -= nums[leftIndex]
+            leftIndex += 1
+
+            minLength = min(minLength, rightIndex - leftIndex + 1)
+        }
+    }
+    return minLength == Int.max ? 0 : minLength
+}
+
+print(minSubArrayLen(7, [2,3,1,2,4,3]))
