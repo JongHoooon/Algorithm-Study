@@ -567,24 +567,26 @@ func pivotIndex(_ nums: [Int]) -> Int {
 }
 */
 
-func minSubArrayLen(_ target: Int, _ nums: [Int]) -> Int {
-    var minLength: Int = Int.max
-    var leftIndex: Int = 0
-    var rightIndex: Int = 0
-    var currentSum: Int = 0
 
-    while rightIndex < nums.count { 
-        currentSum += nums[rightIndex]
-        rightIndex += 1
 
-        while leftIndex < rightIndex && currentSum >= target { 
-            currentSum -= nums[leftIndex]
-            leftIndex += 1
+func merge(_ intervals: [[Int]]) -> [[Int]] {
+    let intervals: [[Int]] = intervals.sorted(by: { $0[0] < $1[0] })
+    var answer: [[Int]] = []
 
-            minLength = min(minLength, rightIndex - leftIndex + 1)
+    for interval in intervals { 
+        guard let last = answer.last else { 
+            answer.append(interval)
+            continue
+        }
+        if interval[0] <= last[1] && interval[1] >= last[1] { 
+            answer[answer.count-1] = [last[0], interval[1]]
+        } else if interval[0] > last[1] { 
+            answer.append(interval)
         }
     }
-    return minLength == Int.max ? 0 : minLength
+
+    return answer
 }
 
-print(minSubArrayLen(7, [2,3,1,2,4,3]))
+print(merge([[1,3],[2,6],[8,10],[15,18]]))
+print(merge([[1,4],[4,5]]))

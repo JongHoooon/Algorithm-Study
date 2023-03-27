@@ -235,8 +235,35 @@ func findPeakElement(_ nums: [Int]) -> Int {
 <br>
 
 ## Merge Intervals
+[LeetCode 56. Merge Intervals](https://leetcode.com/problems/merge-intervals/)
+
+<br>
 
 - 그림 그리기
+  ![image](/Coding_Test_Study/images/1.jpeg)
 - 기존의 interval들과 하나씩 비교하면 시간복잡도: O(N^2) 
 - 시작 요소로 정렬하면 시간복잡도 줄일 수 있다: O(NlgN)
+
+```swift
+func merge(_ intervals: [[Int]]) -> [[Int]] {
+    let intervals: [[Int]] = intervals.sorted(by: { $0[0] < $1[0] })
+    var answer: [[Int]] = []
+
+    for interval in intervals { 
+        guard let last = answer.last else { 
+            answer.append(interval)
+            continue
+        }
+        if interval[0] <= last[1] && interval[1] >= last[1] { 
+            answer[answer.count-1] = [last[0], interval[1]]
+        } else if interval[0] > last[1] { 
+            answer.append(interval)
+        }
+    }
+
+    return answer
+}
+```
+
+<br>
 
