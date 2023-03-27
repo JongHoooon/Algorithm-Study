@@ -306,3 +306,72 @@ func findUnsortedSubarray(_ nums: [Int]) -> Int {
     return disorderEnd - disorderStart + 1
 }
 ```
+
+<br>
+
+## Find Duplicate
+[LeetCode 287. Find the Duplicate Number](https://leetcode.com/problems/find-the-duplicate-number/description/)
+
+<br>
+
+- 브루트 포스: O(N^2)
+- 정렬후 확인: O(lgN)
+- Dynamic Programming: O(N), O(N)
+- 기존 배열을 활용하면 공간복잡도 절약할 수 있다: O(N), O(1)
+  - array에 있는 element를 index로 생각
+  - -1을 곱해줘서 방문했는지 표시
+- 그래프를 사용하면 기존의 배열을 변경하지 않고 찾을 수 있다.
+  - [Floyd's Cycle Detection](https://youtu.be/PvrxZaH_eZ4?t=89)
+  - [참고](https://leetcode.com/problems/find-the-duplicate-number/solutions/543300/swift-solution-with-explanation/?languageTags=swift)
+  - [참고](https://leetcode.com/problems/find-the-duplicate-number/solutions/3186979/tc-o-n-sc-o-1/?languageTags=swift)
+  
+```swift
+unc findDuplicate(_ nums: [Int]) -> Int {
+        var slow = nums[0], fast = nums[nums[0]]
+        while slow != fast {
+            slow = nums[slow]
+            fast = nums[nums[fast]]
+        }
+        var slow2 = 0
+        while slow != slow2 {
+            slow = nums[slow]
+            slow2 = nums[slow2]
+        }
+        return slow
+    }
+```
+
+<br>
+
+## 2sum, 3sum, 4sum
+[LeetCode 1. Two Sum](https://leetcode.com/problems/two-sum/description/)
+
+<br>
+
+- Hash Map 사용하면 O(N), O(N)으로 해결 가능
+- 정렬후 left, right 인덱스 만들어서 합이 target보다 크면 right 감소 작으면 left 증가: O(lgN) + O(N) 
+
+```swift
+func twoSum(_ nums: [Int], _ target: Int) -> [Int] {
+    let sotredNums: [Int] = nums.sorted()
+    var left: Int = 0
+    var right: Int = nums.count - 1
+
+    while left < right { 
+        let sum: Int = sotredNums[left] + sotredNums[right]
+        if sum > target { right -= 1 }
+        else if sum < target { left += 1 }
+        else { break }
+    }
+    left = nums.firstIndex(of: sotredNums[left])!
+    right = nums.lastIndex(of: sotredNums[right])!
+
+    return [left, right]        
+}
+```
+
+<br><br>
+
+## 참고
+
+- [코드없는 프로그래밍_코딩테스트_Arrays](https://www.youtube.com/playlist?list=PLDV-cCQnUlIYFOXYzqLoXnEye4WxDa_30)

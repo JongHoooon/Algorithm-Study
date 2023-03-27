@@ -592,7 +592,7 @@ print(merge([[1,3],[2,6],[8,10],[15,18]]))
 print(merge([[1,4],[4,5]]))
 */
 
-
+/*
 func findUnsortedSubarray(_ nums: [Int]) -> Int {
     var previous: Int = Int.min
     var disorderEnd: Int = -1
@@ -619,3 +619,24 @@ func findUnsortedSubarray(_ nums: [Int]) -> Int {
     }
     return disorderEnd - disorderStart + 1
 }
+*/
+
+/*
+func twoSum(_ nums: [Int], _ target: Int) -> [Int] {
+    let sotredNums: [Int] = nums.sorted()
+    var left: Int = 0
+    var right: Int = nums.count - 1
+
+    while left < right { 
+        let sum: Int = sotredNums[left] + sotredNums[right]
+        if sum > target { right -= 1 }
+        else if sum < target { left += 1 }
+        else { break }
+    }
+    left = nums.firstIndex(of: sotredNums[left])!
+    right = nums.lastIndex(of: sotredNums[right])!
+
+    return [left, right]        
+}
+*/
+
