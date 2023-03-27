@@ -269,3 +269,40 @@ func merge(_ intervals: [[Int]]) -> [[Int]] {
 
 <br>
 
+## Shortest Unsorted Continuous Subarray
+[LeetCode 581. Shortest Unsorted Continuous Subarray](https://leetcode.com/problems/shortest-unsorted-continuous-subarray/description/)
+
+<br>
+
+- 그림 그려보기
+  
+  <img src = "/Coding_Test_Study/images/2.jpeg" width = "50%">
+
+```swift
+func findUnsortedSubarray(_ nums: [Int]) -> Int {
+    var previous: Int = Int.min
+    var disorderEnd: Int = -1
+
+    for i in 0..<nums.count { 
+        if previous <= nums[i] { 
+            previous = nums[i]
+        } else { 
+            disorderEnd = i
+        }
+    }
+
+    if disorderEnd == -1 { return 0 }
+    
+    previous = Int.max
+    var disorderStart = -1
+
+    for j in stride(from: nums.count-1, through: 0, by: -1) { 
+        if previous >= nums[j] { 
+            previous = nums[j]
+        } else { 
+            disorderStart = j
+        }
+    }
+    return disorderEnd - disorderStart + 1
+}
+```

@@ -568,7 +568,7 @@ func pivotIndex(_ nums: [Int]) -> Int {
 */
 
 
-
+/*
 func merge(_ intervals: [[Int]]) -> [[Int]] {
     let intervals: [[Int]] = intervals.sorted(by: { $0[0] < $1[0] })
     var answer: [[Int]] = []
@@ -590,3 +590,32 @@ func merge(_ intervals: [[Int]]) -> [[Int]] {
 
 print(merge([[1,3],[2,6],[8,10],[15,18]]))
 print(merge([[1,4],[4,5]]))
+*/
+
+
+func findUnsortedSubarray(_ nums: [Int]) -> Int {
+    var previous: Int = Int.min
+    var disorderEnd: Int = -1
+
+    for i in 0..<nums.count { 
+        if previous <= nums[i] { 
+            previous = nums[i]
+        } else { 
+            disorderEnd = i
+        }
+    }
+
+    if disorderEnd == -1 { return 0 }
+    
+    previous = Int.max
+    var disorderStart = -1
+
+    for j in stride(from: nums.count-1, through: 0, by: -1) { 
+        if previous >= nums[j] { 
+            previous = nums[j]
+        } else { 
+            disorderStart = j
+        }
+    }
+    return disorderEnd - disorderStart + 1
+}
