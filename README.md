@@ -6,13 +6,13 @@
 
 ## Baekjoon 문제풀이
 
-- [Baekjoon](Algorithm-Study/bj/)
+- [Baekjoon](/bj/)
 
 <br>
 
 ## Programmers 문제풀이
 
-- [Programmers](Algorithm-Study/programmers/)
+- [Programmers](/programmers/)
 
 <br>
 
