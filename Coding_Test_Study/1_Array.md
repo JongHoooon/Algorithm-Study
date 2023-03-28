@@ -374,4 +374,4 @@ func twoSum(_ nums: [Int], _ target: Int) -> [Int] {
 
 ## 참고
 
-- [코드없는 프로그래밍_코딩테스트_Arrays](https://www.youtube.com/playlist?list=PLDV-cCQnUlIYFOXYzqLoXnEye4WxDa_30)
+- [코드없는 프로그래밍 - 코딩테스트 Arrays](https://www.youtube.com/playlist?list=PLDV-cCQnUlIYFOXYzqLoXnEye4WxDa_30)

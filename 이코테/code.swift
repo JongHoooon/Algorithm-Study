@@ -640,3 +640,167 @@ func twoSum(_ nums: [Int], _ target: Int) -> [Int] {
 }
 */
 
+
+/*
+func strStr(_ haystack: String, _ needle: String) -> Int {
+    return KMP(parent: haystack, pattern: needle)
+}
+
+func makeTable(_ pattern: String) -> [Int] { 
+    let pattern: [Character] = Array(pattern)
+    var table: [Int] = Array(repeating: 0, count: pattern.count)
+    var j: Int = 0
+    for i in 1..<pattern.count { 
+        while j > 0 && pattern[i] != pattern[j] { 
+            j = table[j - 1]
+        }
+        if pattern[i] == pattern[j] { 
+            j += 1
+            table[i] = j
+        }
+    }
+    return table
+}
+
+func KMP(parent: String, pattern: String) -> Int { 
+    let table: [Int] = makeTable(pattern)
+    let parent: [Character] = Array(parent)
+    let pattern: [Character] = Array(pattern)
+    let parentCount: Int = parent.count
+    let patternCount: Int = pattern.count
+    var j: Int = 0
+    for i in 0..<parentCount { 
+        while j > 0 && parent[i] != pattern[j] {
+            j = table[j-1]
+        }
+        if parent[i] == pattern[j] { 
+            if j == patternCount - 1 { 
+                return i - patternCount + 1
+            } else { 
+                j += 1
+            }
+        }
+    }
+    return -1
+}
+
+print(strStr("hello", "ll"))
+*/
+
+/*
+func isPalindrome(_ s: String) -> Bool {
+    let characters: [Character] = Array(s)
+        .filter { $0.isLetter || $0.isNumber }
+        .map { Character($0.lowercased()) }
+
+    var left: Int = 0 
+    var right: Int = characters.count-1
+    while left < right { 
+        if characters[left] != characters[right] { return false }
+        left += 1
+        right -= 1
+    }
+
+    return true
+}
+
+print(isPalindrome("A man, a plan, a canal: Panama"))
+*/
+
+/*
+func addStrings(_ num1: String, _ num2: String) -> String {
+    let num1: [Character] = Array(num1)
+    let num2: [Character] = Array(num2)
+    var idx1: Int = num1.count - 1
+    var idx2: Int = num2.count - 1
+    var answer: [Character] = []
+    var carry: Int = 0
+
+    while idx1 >= 0 && idx2 >= 0 { 
+        let sum: Int = Int(String(num1[idx1]))! + Int(String(num2[idx2]))! + carry
+        let num: Int = sum % 10
+        carry = sum / 10
+        answer.append(Character(String(num)))
+        idx1 -= 1
+        idx2 -= 1
+    }
+
+    while idx1 >= 0 { 
+        let sum: Int = Int(String(num1[idx1]))! + carry
+        let num: Int = sum % 10
+        carry = sum / 10
+        answer.append(Character(String(num)))
+        idx1 -= 1
+    }
+
+    while idx2 >= 0 {
+        let sum: Int = Int(String(num2[idx2]))! + carry
+        let num: Int = sum % 10
+        carry = sum / 10
+        answer.append(Character(String(num)))
+        idx2 -= 1
+    }
+
+    if carry != 0 { 
+        answer.append(Character(String(carry)))
+    }
+    
+    return String(answer.reversed())
+}
+
+print(addStrings("456", "77"))
+*/
+
+/*
+func groupAnagrams(_ strs: [String]) -> [[String]] {
+    guard !strs.isEmpty else { return [] }
+
+    var dict: [String: [String]] = [:]
+
+    for str in strs { 
+        let sortedStr: String = String(str.sorted())
+
+        dict[sortedStr, default: []].append(str)
+    }
+
+    return Array(dict.values)
+}
+*/
+
+
+/*
+func groupAnagrams(_ strs: [String]) -> [[String]] {
+    Array(
+        Dictionary(
+            grouping: strs,
+            by: { $0.sorted().hashValue }
+        )
+        .values
+    )
+}
+*/
+
+func lengthOfLongestSubstring(_ s: String) -> Int {
+    let s: [Character] = Array(s)
+    var checkTable: [Character: Int] = [:]
+    var j: Int = 0
+    var longest: Int = 0
+
+    for (i, c) in s.enumerated() { 
+        if checkTable[c, default: -1] == -1 { 
+            checkTable[c] = i
+        } else if j <= checkTable[c]! { 
+            j = checkTable[c]! + 1 
+            checkTable[c] = i
+        } else if j > checkTable[c]! {
+            checkTable[c] = i
+        }
+            
+        checkTable[c] = i
+        longest = max(longest, i - j + 1)
+    }
+    
+    return longest
+}
+
+print(lengthOfLongestSubstring("aabaab!bb"))
