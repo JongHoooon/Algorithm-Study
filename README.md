@@ -6,13 +6,13 @@
 
 ## Baekjoon 문제풀이
 
-- [Baekjoon](https://www.acmicpc.net)
+- [Baekjoon](Algorithm-Study/bj/)
 
 <br>
 
 ## Programmers 문제풀이
 
-- [Programmers](https://programmers.co.kr)
+- [Programmers](Algorithm-Study/programmers/)
 
 <br>
 
