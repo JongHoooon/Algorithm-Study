@@ -26,6 +26,7 @@
 
 <br>
 
-## [코드없는 프로그래밍](https://www.youtube.com/@user-pw9fm4gc7e) - 코딩 테스트
+## 코드없는 프로그래밍 - 코딩 테스트
 
-- 
+- [Array](/NoCodeProgram/1_Array.md)
+- [String](/NoCodeProgram/2_String.md)
