@@ -241,7 +241,7 @@ func findPeakElement(_ nums: [Int]) -> Int {
 
 - 그림 그리기
 
-  <img src = "/Coding_Test_Study/images/1.jpeg" width = "50%">  
+  <img src = "/NoCodeProgram/images/1.jpeg" width = "50%">  
 
 - 기존의 interval들과 하나씩 비교하면 시간복잡도: O(N^2) 
 - 시작 요소로 정렬하면 시간복잡도 줄일 수 있다: O(NlgN)
@@ -276,7 +276,7 @@ func merge(_ intervals: [[Int]]) -> [[Int]] {
 
 - 그림 그려보기
   
-  <img src = "/Coding_Test_Study/images/2.jpeg" width = "50%">
+  <img src = "/NoCodeProgram/images/2.jpeg" width = "50%">
 
 ```swift
 func findUnsortedSubarray(_ nums: [Int]) -> Int {
