@@ -10,13 +10,13 @@
 
 <br>
 
-## Programmers 문제풀이
+## Programmers 문제풀이 
 
 - [Programmers](/programmers/)
 
 <br>
 
-## 이코테 강의 
+## 이코테 강의 [🔗](https://www.youtube.com/playlist?list=PLRx0vPvlEmdAghTr5mXQxGpHjWqSz0dgC)
 
 - [Greedy & Implementaion](/이코테/1_Greedy&Implementation.md)
 - [DFS & BFS](/이코테/2_DFS&BFS.md)
@@ -26,7 +26,7 @@
 
 <br>
 
-## 코드없는 프로그래밍 - 코딩 테스트
+## 코드없는 프로그래밍 - 코딩 테스트 [🔗](https://www.youtube.com/@user-pw9fm4gc7e)
 
 - [Array](/NoCodeProgram/1_Array.md)
 - [String](/NoCodeProgram/2_String.md)
