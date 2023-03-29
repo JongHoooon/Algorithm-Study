@@ -780,6 +780,7 @@ func groupAnagrams(_ strs: [String]) -> [[String]] {
 }
 */
 
+/*
 func lengthOfLongestSubstring(_ s: String) -> Int {
     let s: [Character] = Array(s)
     var checkTable: [Character: Int] = [:]
@@ -804,3 +805,210 @@ func lengthOfLongestSubstring(_ s: String) -> Int {
 }
 
 print(lengthOfLongestSubstring("aabaab!bb"))
+*/
+
+/*
+func sorted(numStrs: inout [(Int, String)]) -> [(Int, String)] { 
+    for i in 0..<numStrs.count-1 { 
+        for j in 0..<numStrs.count-1-i { 
+            if numStrs[j].0 > numStrs[j+1].0 { 
+                numStrs.swapAt(j, j+1)
+            }
+        }
+    }
+    return numStrs
+}
+
+var arr: [(Int, String)] = [(7, "a"), (5, "a"), (5, "b"), (7, "b"), (3, "c")] 
+print(sorted(numStrs: &arr))
+*/
+
+/*
+func insertionSort(nums: inout [Int]) -> [Int] { 
+    for i in 1..<nums.count { 
+        let tmp: Int = nums[i]
+        var j: Int = i - 1
+        while j >= 0 && tmp < nums[j] { 
+            nums[j+1] = nums[j]
+            j -= 1 
+        }
+        nums[j+1] = tmp
+    }
+    return nums
+}
+
+func insertionSort(nums: inout [Int]) -> [Int] { 
+    for i in 1..<nums.count { 
+        let tmp: Int = nums[i]
+        var j: Int = i - 1
+        while j >= 0 && tmp < nums[j] { 
+            nums.swapAt(j, j+1)
+            j -= 1 
+        }
+    }
+    return nums
+}
+
+var arr: [Int] = [9, 3, 5, 7, 1]
+print(insertionSort(nums: &arr))
+*/
+
+
+/*
+func slectionSort(numStrs: inout [(Int, String)]) -> [(Int, String)] { 
+    for i in 0..<numStrs.count-1 {
+        var minNum: Int = numStrs[i].0
+        var minIdx: Int = i
+        for j in i..<numStrs.count { 
+            if numStrs[j].0 < minNum { 
+                minNum = numStrs[j].0
+                minIdx = j
+            }
+        }
+        numStrs.swapAt(i, minIdx)
+    }
+    return numStrs
+}
+
+
+var arr: [(Int, String)] = [(7, "a"), (5, "a"), (5, "b"), (7, "b"), (3, "c")] 
+print(slectionSort(numStrs: &arr))
+*/
+
+/*
+func mergeSort(nums: [Int]) -> [Int] { 
+    let count: Int = nums.count
+    if count == 1 { return nums }
+
+    let mid: Int = count / 2
+
+    let leftNums: [Int] = Array(nums[0..<mid])
+    let rightNums: [Int] = Array(nums[mid..<count])
+
+    let sortedLeft: [Int] = mergeSort(nums: leftNums)
+    let sortedRight: [Int] = mergeSort(nums: rightNums)
+
+    var sortedNums: [Int] = [] 
+    var idxL: Int = 0
+    var idxR: Int = 0
+
+    while idxL < sortedLeft.count || idxR < sortedRight.count { 
+        if idxL == sortedLeft.count { 
+            sortedNums.append(sortedRight[idxR])
+            idxR += 1
+            continue
+        }
+        
+        if idxR == sortedRight.count { 
+            sortedNums.append(sortedLeft[idxL])
+            idxL += 1
+            continue
+        }
+
+        if sortedRight[idxR] <= sortedLeft[idxL] { 
+            sortedNums.append(sortedRight[idxR])
+            idxR += 1
+        } else { 
+            sortedNums.append(sortedLeft[idxL])
+            idxL += 1
+        }
+    }
+
+    return sortedNums
+}
+
+print(mergeSort(nums: [5, 7, 9, 3, 1, 2, 4]))
+*/
+
+import Foundation
+
+struct Heap<T: Comparable> { 
+    private var nodes: [T] = []
+    let sort: (T, T) -> Bool
+
+    init(sort: @escaping (T, T) -> Bool) { 
+        self.sort = sort
+    }
+
+    private func getParentIdx(_ index: Int) -> Int { 
+        return (index - 1) / 2
+    }
+
+    private func getLeftChildIdx(_ index: Int) -> Int { 
+        return index * 2 + 1
+    }
+
+    private func getRightIdx(_ index: Int) -> Int {
+        return index * 2 + 2
+    }
+
+    var isEmpty: Bool = { 
+        return nodes.isEmpty
+    }
+
+
+    mutating func insert(_ element: T) { 
+        var index: Int = nodes.count
+        nodes.append(element)
+        while index > 0 && sort(nodes[index], nodes[getParentIdx(index)]) { 
+            let parentIdx: Int = getParentIdx(index)
+            nodes.swapAt(index, parentIdx)
+            index = parentIdx
+        }
+    }
+
+    mutating func pop() -> T? { 
+        nodes.swapAt(0, nodes.count - 1)
+        let popped: T? = nodes.popLast()
+        var index: Int = 0
+
+        // 자식이 있는 경우
+        while getLeftChildIdx(index) <= nodes.count - 1 { 
+            let leftChildIdx: Int = getLeftChildIdx(index)
+            let rightChildIdx: Int = getRightIdx(index)
+
+            // left, right 둘다 있는 경우
+            if rightChildIdx < nodes.count { 
+                let child: Int = sort(nodes[leftChildIdx], nodes[rightChildIdx]) ? leftChildIdx : rightChildIdx
+                
+
+                if sort(nodes[child], nodes[index]) { 
+                    nodes.swapAt(child, index)
+                    index = child
+                } else { 
+                    break
+                }
+            } else {  // left만 있는경우 
+                print("teeteteettet ")
+                if sort(nodes[leftChildIdx], nodes[index]) { 
+                    nodes.swapAt(leftChildIdx, index)
+                    index = leftChildIdx
+                } else { 
+                    break
+                }
+            }
+        }
+        return popped
+    }
+}
+
+var minHeap: Heap<Int> = Heap<Int>(sort: <) 
+
+// minHeap.insert(5)
+// minHeap.insert(7)
+// minHeap.insert(23)
+// minHeap.insert(2)
+// minHeap.insert(9)
+// minHeap.insert(1)
+// minHeap.insert(13)
+// minHeap.insert(8)
+minHeap.insert(9)
+minHeap.insert(13)
+minHeap.insert(23)
+
+// print(minHeap.nodes)
+
+// while !minHeap.nodes.isEmpty { 
+//     print(minHeap.pop()!)
+//     print(minHeap.nodes)
+// }

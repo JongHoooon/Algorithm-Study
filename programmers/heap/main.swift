@@ -26,11 +26,11 @@ struct Heap<T: Comparable> {
     
     mutating func pop() -> T {
         nodes.swapAt(0, nodes.count-1)
-        let poped = nodes.removeLast()
+        let popped = nodes.removeLast()
         var index = 0
         
         // 자식이 있는 인덱스만
-        while index * 2 + 1 < nodes.count-1 {
+        while index * 2 + 1 <= nodes.count-1 {
             let leftChild = index * 2 + 1
             let rightChild = leftChild + 1
             
@@ -54,7 +54,7 @@ struct Heap<T: Comparable> {
                 }
             }
         }
-        return poped
+        return popped
     }
 }
 

@@ -7,62 +7,129 @@
 
 import Foundation
 
-// 그래프 노드 정의
-class Node {
-    var value: Int
-    var neighbors: [Node]
-    var visited: Bool
-    
-    init(value: Int) {
-        self.value = value
-        self.neighbors = []
-        self.visited = false
+//func findKthLargest(_ nums: [Int], _ k: Int) -> Int {
+//    var nums: [Int] = nums
+//    let count = nums.count
+//    if count == 1 {return nums[0] }
+//
+//    let pivot: Int = 0
+//    var left: Int = 1
+//    var right: Int = count - 1
+//
+//    while left <= right {
+//        if nums[left] <= nums[pivot] {
+//            left += 1
+//            continue
+//        }
+//
+//        if nums[right] > nums[pivot] {
+//            right -= 1
+//            continue
+//        }
+//
+//        if nums[left] > nums[pivot] && nums[right] <= nums[pivot] {
+//            nums.swapAt(left, right)
+//            continue
+//        }
+//    }
+//
+//    nums.swapAt(pivot, right)
+//    if left == count - k {
+//        return nums[left]
+//    } else if left > count - k {
+//        return findKthLargest(Array(nums[0..<left]), k - (count - left))
+//    } else {
+//        return findKthLargest(Array(nums[left..<count]), k)
+//    }
+//}
+
+
+struct Heap<T: Comparable> {
+    private var nodes: [T] = []
+    private let sort: (T, T) -> Bool
+
+    init(sort: @escaping (T, T) -> Bool) {
+        self.sort = sort
     }
-}
+    
+    var isEmpty: Bool {
+        return nodes.isEmpty
+    }
 
-// DFS 함수 정의
-func dfs(node: Node) {
-    print(node.value)
-    node.visited = true
+    private func getParentIdx(_ index: Int) -> Int {
+        return (index - 1) / 2
+    }
 
-    for neighbor in node.neighbors {
-        if !neighbor.visited {
-            dfs(node: neighbor)
+    private func getLeftChildIdx(_ index: Int) -> Int {
+        return index * 2 + 1
+    }
+
+    private func getRightIdx(_ index: Int) -> Int {
+        return index * 2 + 2
+    }
+
+    mutating func insert(_ element: T) {
+        var index: Int = nodes.count
+        nodes.append(element)
+        while index > 0 && sort(nodes[index], nodes[getParentIdx(index)]) {
+            let parentIdx: Int = getParentIdx(index)
+            nodes.swapAt(index, parentIdx)
+            index = parentIdx
         }
     }
-}
 
-/*
-func dfs(node: Node) {
-    var stack: [Node] = [node]
-    node.visited = true
-    
-    while !stack.isEmpty {
-        let current = stack.popLast()!
-        print(current.value
-        )
-        for next in current.neighbors {
-            if !next.visited {
-                next.visited = true
-                stack.append(next)
+    mutating func pop() -> T? {
+        nodes.swapAt(0, nodes.count - 1)
+        let popped: T? = nodes.popLast()
+        var index: Int = 0
+
+        // 자식이 있는 경우
+        while getLeftChildIdx(index) <= nodes.count - 1 {
+            let leftChildIdx: Int = getLeftChildIdx(index)
+            let rightChildIdx: Int = getRightIdx(index)
+
+            // left, right 둘다 있는 경우
+            if rightChildIdx < nodes.count {
+                let child: Int = sort(nodes[leftChildIdx], nodes[rightChildIdx]) ? leftChildIdx : rightChildIdx
+                
+
+                if sort(nodes[child], nodes[index]) {
+                    nodes.swapAt(child, index)
+                    index = child
+                } else {
+                    break
+                }
+            } else {  // left만 있는경우
+                print("teeteteettet ")
+                if sort(nodes[leftChildIdx], nodes[index]) {
+                    nodes.swapAt(leftChildIdx, index)
+                    index = leftChildIdx
+                } else {
+                    break
+                }
             }
         }
+        return popped
     }
 }
- */
 
-// 그래프 구성 예시
-let node1 = Node(value: 1)
-let node2 = Node(value: 2)
-let node3 = Node(value: 3)
-let node4 = Node(value: 4)
-let node5 = Node(value: 5)
+var minHeap: Heap<Int> = Heap<Int>(sort: <)
 
-node1.neighbors = [node2, node3]
-node2.neighbors = [node1, node4, node5]
-node3.neighbors = [node1, node4]
-node4.neighbors = [node2, node3]
-node5.neighbors = [node2]
+// minHeap.insert(5)
+// minHeap.insert(7)
+// minHeap.insert(23)
+// minHeap.insert(2)
+// minHeap.insert(9)
+// minHeap.insert(1)
+// minHeap.insert(13)
+// minHeap.insert(8)
+minHeap.insert(9)
+minHeap.insert(13)
+minHeap.insert(23)
 
-dfs(node: node1)
+
+
+while !minHeap.isEmpty {
+    print(minHeap.pop()!)
+}
 

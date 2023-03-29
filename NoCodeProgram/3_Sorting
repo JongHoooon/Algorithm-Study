@@ -1,0 +1,223 @@
+# Sorting
+
+## Bubble Sorting
+- stable 하다
+- 평균 시간복잡도 O(n^2)
+
+```swift
+func bubbleSort(numStrs: inout [(Int, String)]) -> [(Int, String)] { 
+    for i in 0..<numStrs.count-1 { 
+        for j in 0..<numStrs.count-1-i { 
+            if numStrs[j].0 > numStrs[j+1].0 { 
+                numStrs.swapAt(j, j+1)
+            }
+        }
+    }
+    return numStrs
+}
+
+var arr: [(Int, String)] = [(7, "a"), (5, "a"), (5, "b"), (7, "b"), (3, "c")] 
+
+print(bubbleSort(numStrs: &arr))
+// [(3, "c"), (5, "a"), (5, "b"), (7, "a"), (7, "b")]
+```
+
+<br>
+
+## Insertion Sorting
+- stable 하다
+- 평균 O(n^2)
+  
+```swift
+func insertionSort(nums: inout [Int]) -> [Int] { 
+    for i in 1..<nums.count { 
+        let tmp: Int = nums[i]
+        var j: Int = i - 1
+        while j >= 0 && tmp < nums[j] { 
+            nums[j+1] = nums[j]
+            j -= 1 
+        }
+        nums[j+1] = tmp
+    }
+    return nums
+}
+
+func insertionSort(nums: inout [Int]) -> [Int] { 
+    for i in 1..<nums.count { 
+        let tmp: Int = nums[i]
+        var j: Int = i - 1
+        while j >= 0 && tmp < nums[j] { 
+            nums.swapAt(j, j+1)
+            j -= 1 
+        }
+    }
+    return nums
+}
+
+var arr: [Int] = [9, 3, 5, 7, 1]
+print(insertionSort(nums: &arr))
+// [1, 3, 5, 7, 9]
+```
+
+<br>
+
+## Selection Sort
+- O(n^2)
+- unstable 하다.
+
+```swift
+func slectionSort(numStrs: inout [(Int, String)]) -> [(Int, String)] { 
+    for i in 0..<numStrs.count-1 {
+        var minNum: Int = numStrs[i].0
+        var minIdx: Int = i
+        for j in i..<numStrs.count { 
+            if numStrs[j].0 < minNum { 
+                minNum = numStrs[j].0
+                minIdx = j
+            }
+        }
+        numStrs.swapAt(i, minIdx)
+    }
+    return numStrs
+}
+
+
+var arr: [(Int, String)] = [(7, "a"), (5, "a"), (5, "b"), (7, "b"), (3, "c")] 
+print(slectionSort(numStrs: &arr))
+// [(3, "c"), (5, "a"), (5, "b"), (7, "b"), (7, "a")]
+```
+
+<br>
+
+## Merge Sort
+- 시간복잡도: O(nlogn)
+- stable 하다
+
+```swift
+func mergeSort(nums: [Int]) -> [Int] { 
+    let count: Int = nums.count
+    if count == 1 { return nums }
+
+    let mid: Int = count / 2
+
+    let leftNums: [Int] = Array(nums[0..<mid])
+    let rightNums: [Int] = Array(nums[mid..<count])
+
+    let sortedLeft: [Int] = mergeSort(nums: leftNums)
+    let sortedRight: [Int] = mergeSort(nums: rightNums)
+
+    var sortedNums: [Int] = [] 
+    var idxL: Int = 0
+    var idxR: Int = 0
+
+    while idxL < sortedLeft.count || idxR < sortedRight.count { 
+        if idxL == sortedLeft.count { 
+            sortedNums.append(sortedRight[idxR])
+            idxR += 1
+            continue
+        }
+        
+        if idxR == sortedRight.count { 
+            sortedNums.append(sortedLeft[idxL])
+            idxL += 1
+            continue
+        }
+
+        if sortedRight[idxR] <= sortedLeft[idxL] { 
+            sortedNums.append(sortedRight[idxR])
+            idxR += 1
+        } else { 
+            sortedNums.append(sortedLeft[idxL])
+            idxL += 1
+        }
+    }
+
+    return sortedNums
+}
+
+print(mergeSort(nums: [5, 7, 9, 3, 1, 2, 4]))
+// [1, 2, 3, 4, 5, 7, 9]
+```
+
+<br>
+
+## Quik Sort
+
+<br>
+
+### Quick Select
+
+> 정렬되지 않은 배열에서 n번째로 큰/작은 element를 찾는 방법
+
+- partioning을 사용
+pivot을 사용해서 pivot보다 작은수, 큰수를 나눈다.
+
+
+<br>
+
+- 전체 정렬 후 검색
+  - O(nlgn)
+- heap 사용
+  - O(nlgk)
+- Quick Sort
+  - worst: O(n^2)
+  - best: O(n)
+  - average: O(n)
+
+<br>
+
+#### [LeetCode 215. Kth Largest Element in an Array](https://leetcode.com/problems/kth-largest-element-in-an-array/description/)
+
+```swift
+func findKthLargest(_ nums: [Int], _ k: Int) -> Int {
+    var nums: [Int] = nums
+    let count = nums.count
+    if count == 1 { return nums[0] }
+
+    let pivot: Int = 0
+    var left: Int = 1
+    var right: Int = count - 1
+
+    while left <= right {
+        if nums[left] <= nums[pivot] {
+            left += 1
+            continue
+        }
+
+        if nums[right] > nums[pivot] {
+            right -= 1
+            continue
+        }
+
+        if nums[left] > nums[pivot] && nums[right] <= nums[pivot] {
+            nums.swapAt(left, right)
+            continue
+        }
+    }
+
+    nums.swapAt(pivot, right)
+    if right == count - k {
+        return nums[right]
+    } else if right > count - k {
+        return findKthLargest(Array(nums[0..<right]), k - (count - right))
+    } else {
+        return findKthLargest(Array(nums[right+1..<count]), k)
+    }
+}
+```
+
+<br>
+
+### Quick Sort
+
+- 시간복잡도
+  - worst: O(n^2)
+  - average: O(nlgn)
+  - best: O(nlgn)
+- unstable 하다
+
+<br>
+
+## Heap Sort
+- 시간복잡도: O(nlgn)
+- unstable
