@@ -402,9 +402,17 @@ print(radixSort(nums: [391, 582, 50, 924, 8, 192]))
 // [8, 50, 192, 391, 582, 924]
 ```
 
+<br><br>
+
 | |Bubble|Merge|Selection|Insertion|Quick|Heap|Counting|Radix|
 |:---:|:----:|:---:|:------:|:----:|:----:|:---:|:-----:|:-----:|
 |Best<br>Time|n^2|nlgn|n^2|n|nlgn|nlgn|n+k<br>(K:값의 범위)|d(n+k)<br>(d:자릿수,k:진수)|
 |Average<br>Time|n^2|nlgn|n^2|n^2|nlgn|nlgn|n+k|n|
 |Wrost<br>Time|n^2|nlgn|n^2|n^2|n^2|nlgn|n+k|n|
 |Stability|O|O|X|O|X|X|O|O|
+
+<br>
+
+## 참고
+
+- [코드없는 프로그래밍 - 코딩테스트 Sorting](https://www.youtube.com/playlist?list=PLDV-cCQnUlIZXLSUeF2Fav3_7X7ku-F63)
