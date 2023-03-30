@@ -920,95 +920,235 @@ func mergeSort(nums: [Int]) -> [Int] {
 print(mergeSort(nums: [5, 7, 9, 3, 1, 2, 4]))
 */
 
+
+// struct Heap<T: Comparable> { 
+//     private var nodes: [T] = []
+//     let sort: (T, T) -> Bool
+
+//     init(sort: @escaping (T, T) -> Bool) { 
+//         self.sort = sort
+//     }
+
+//     private func getParentIdx(_ index: Int) -> Int { 
+//         return (index - 1) / 2
+//     }
+
+//     private func getLeftChildIdx(_ index: Int) -> Int { 
+//         return index * 2 + 1
+//     }
+
+//     private func getRighChildtIdx(_ index: Int) -> Int {
+//         return index * 2 + 2
+//     }
+
+//     var isEmpty: Bool { 
+//         return nodes.isEmpty
+//     }
+
+
+//     mutating func insert(_ element: T) { 
+//         var index: Int = nodes.count
+//         nodes.append(element)
+//         while index > 0 && sort(nodes[index], nodes[getParentIdx(index)]) { 
+//             let parentIdx: Int = getParentIdx(index)
+//             nodes.swapAt(index, parentIdx)
+//             index = parentIdx
+//         }
+//     }
+
+//     mutating func pop() -> T? { 
+//         nodes.swapAt(0, nodes.count - 1)
+//         let popped: T? = nodes.popLast() 
+//         var index: Int = 0
+
+//         // 자식이 있는 경우
+//         while getLeftChildIdx(index) <= nodes.count - 1 { 
+//             let leftChildIdx: Int = getLeftChildIdx(index)
+//             let rightChildIdx: Int = getRighChildtIdx(index)
+
+//             // left, right 둘다 있는 경우
+//             if rightChildIdx < nodes.count { 
+//                 let child: Int = sort(nodes[leftChildIdx], nodes[rightChildIdx]) ? leftChildIdx : rightChildIdx
+//                 if sort(nodes[child], nodes[index]) { 
+//                     nodes.swapAt(child, index)
+//                     index = child
+//                 } else { 
+//                     break
+//                 }
+//             } else {  // left만 있는경우 
+//                 if sort(nodes[leftChildIdx], nodes[index]) { 
+//                     nodes.swapAt(leftChildIdx, index)
+//                     index = leftChildIdx
+//                 } else { 
+//                     break
+//                 }
+//             }
+//         }
+//         return popped
+//     }
+// }
+
+// var arr: [Int] = [3, 5, 7, 9, 4, 2] 
+// var minHeap: Heap<Int> = Heap<Int>(sort: <) 
+
+// for e in arr { 
+//     minHeap.insert(e)
+// }
+
+// for i in arr.indices { 
+//     guard let popped: Int = minHeap.pop() else { break }
+//     arr[i] = popped
+// }
+
+// print(arr)
+
+
+
+// struct Heap<T: Comparable> { 
+//     private var nodes: [T] = []
+//     private let sort: (T, T) -> Bool 
+
+//     init(sortBy: @escaping (T, T) -> Bool) { 
+//         self.sort = sortBy
+//     }
+
+//     func getLeftChildIdx(_ idx: Int) -> Int { 
+//         return idx * 2 + 1
+//     }
+
+//     func getRightChildIdx(_ idx: Int) -> Int { 
+//         return idx * 2 + 2
+//     }
+
+//     func getParentIdx(_ idx: Int) -> Int {
+//         return (idx - 1) / 2
+//     }
+
+//     var isEmpty: Bool { 
+//         return nodes.isEmpty
+//     }
+
+//     mutating func insert(_ node: T) { 
+//         var index: Int = nodes.count
+//         nodes.append(node)
+//         while index > 0 && sort(nodes[index], nodes[getParentIdx(index)]) { 
+//             let parentIdx: Int = getParentIdx(index) 
+//             nodes.swapAt(index, parentIdx)
+//             index = parentIdx
+//         }
+//     }
+
+//     mutating func pop() -> T? { 
+//         nodes.swapAt(0, nodes.count - 1)
+//         let popped: T? = nodes.popLast()
+//         var idx: Int = 0
+
+//         while getLeftChildIdx(idx) <= nodes.count - 1 { 
+//             let leftChildIdx: Int = getLeftChildIdx(idx)
+//             let rightChildIdx: Int = getRightChildIdx(idx)
+
+//             if rightChildIdx <= nodes.count - 1 { 
+//                 let childIdx = sort(nodes[leftChildIdx], nodes[rightChildIdx]) ? leftChildIdx : rightChildIdx
+//                 if sort(nodes[childIdx], nodes[idx]) { 
+//                     nodes.swapAt(childIdx, idx)
+//                     idx = childIdx
+//                 } else { 
+//                     break
+//                 }
+//             } else { 
+//                 if sort(nodes[leftChildIdx], nodes[idx]) { 
+//                     nodes.swapAt(leftChildIdx, idx)
+//                     idx = leftChildIdx
+//                 } else {
+//                     break
+//                 }
+//             }
+//         }
+//         return popped
+//     }
+// }
+
+
+// var maxHeap: Heap<Int>  = Heap<Int>(sortBy: { $0 > $1})
+
+// maxHeap.insert(3)
+// maxHeap.insert(2)
+// maxHeap.insert(11)
+// maxHeap.insert(9)
+// maxHeap.insert(7)
+// maxHeap.insert(5)
+// maxHeap.insert(1)
+// maxHeap.insert(14)
+
+// while !maxHeap.isEmpty { 
+//     print(maxHeap.pop()!)
+// }
+
+// func countingSort(nums: [Int]) -> [Int] { 
+//     let count: Int = nums.count
+//     let minNum: Int = nums.min()!
+//     let maxNum: Int = nums.max()!
+
+//     let range: Int = maxNum - minNum + 1
+//     var counts: [Int] = Array(repeating: 0, count: range)
+
+//     for num in nums { 
+//         counts[num-minNum] += 1
+//     }
+
+//     var accessCounts: [Int] = []
+//     var accessCount: Int = 0
+//     for count in counts { 
+//         accessCount += count
+//         accessCounts.append(accessCount)
+//     }
+//     accessCounts = accessCounts.map { $0 - 1}
+//     var sorted: [Int] = Array(repeating: 0, count: range)
+
+//     for i in stride(from: count-1, through: 0, by: -1) { 
+//         let num = nums[i]
+//         sorted[accessCounts[num]] = num
+//         accessCounts[num] -= 1
+//     }  
+//     return sorted
+// }
+
 import Foundation
 
-struct Heap<T: Comparable> { 
-    private var nodes: [T] = []
-    let sort: (T, T) -> Bool
-
-    init(sort: @escaping (T, T) -> Bool) { 
-        self.sort = sort
+func countingSortByDigit(nums: [Int], digit: Int) -> [Int] { 
+    let powed: Int = Int(pow(10, 2))
+    var counts: [Int] = Array(repeating: 0, count: 10)
+    for num in nums { 
+        let countIdx: Int = num / powed % 10
+        counts[countIdx] += 1
     }
 
-    private func getParentIdx(_ index: Int) -> Int { 
-        return (index - 1) / 2
+    var accessCounts: [Int] = []
+    var accessCount: Int = 0
+    for count in counts { 
+        accessCount += count
+        accessCounts.append(accessCount)
     }
+    accessCounts = accessCounts.map { $0 - 1}
+    var sorted: [Int] = Array(repeating: 0, count: nums.count)
 
-    private func getLeftChildIdx(_ index: Int) -> Int { 
-        return index * 2 + 1
+    for num in nums.reversed() { 
+        let countIdx: Int = num / powed % 10
+        let endLoc: Int = accessCounts[countIdx]
+        sorted[endLoc] = num
+        accessCounts[countIdx] -= 1
     }
-
-    private func getRightIdx(_ index: Int) -> Int {
-        return index * 2 + 2
-    }
-
-    var isEmpty: Bool = { 
-        return nodes.isEmpty
-    }
-
-
-    mutating func insert(_ element: T) { 
-        var index: Int = nodes.count
-        nodes.append(element)
-        while index > 0 && sort(nodes[index], nodes[getParentIdx(index)]) { 
-            let parentIdx: Int = getParentIdx(index)
-            nodes.swapAt(index, parentIdx)
-            index = parentIdx
-        }
-    }
-
-    mutating func pop() -> T? { 
-        nodes.swapAt(0, nodes.count - 1)
-        let popped: T? = nodes.popLast()
-        var index: Int = 0
-
-        // 자식이 있는 경우
-        while getLeftChildIdx(index) <= nodes.count - 1 { 
-            let leftChildIdx: Int = getLeftChildIdx(index)
-            let rightChildIdx: Int = getRightIdx(index)
-
-            // left, right 둘다 있는 경우
-            if rightChildIdx < nodes.count { 
-                let child: Int = sort(nodes[leftChildIdx], nodes[rightChildIdx]) ? leftChildIdx : rightChildIdx
-                
-
-                if sort(nodes[child], nodes[index]) { 
-                    nodes.swapAt(child, index)
-                    index = child
-                } else { 
-                    break
-                }
-            } else {  // left만 있는경우 
-                print("teeteteettet ")
-                if sort(nodes[leftChildIdx], nodes[index]) { 
-                    nodes.swapAt(leftChildIdx, index)
-                    index = leftChildIdx
-                } else { 
-                    break
-                }
-            }
-        }
-        return popped
-    }
+    return sorted
 }
 
-var minHeap: Heap<Int> = Heap<Int>(sort: <) 
+func radixSort(nums: [Int]) -> [Int] { 
+    let maxNum: Int = nums.max()!
+    let digits = String(nums).count - 1
+    var sorted: [Int] = nums
+    for digit in 0..<digits { 
+        sorted = countingSortByDigit(nums: sorted, digit: digit)
+    } 
+    return sorted
+}
 
-// minHeap.insert(5)
-// minHeap.insert(7)
-// minHeap.insert(23)
-// minHeap.insert(2)
-// minHeap.insert(9)
-// minHeap.insert(1)
-// minHeap.insert(13)
-// minHeap.insert(8)
-minHeap.insert(9)
-minHeap.insert(13)
-minHeap.insert(23)
-
-// print(minHeap.nodes)
-
-// while !minHeap.nodes.isEmpty { 
-//     print(minHeap.pop()!)
-//     print(minHeap.nodes)
-// }
+print(radixSort(nums: [391, 582, 50, 924, 8, 192]))
