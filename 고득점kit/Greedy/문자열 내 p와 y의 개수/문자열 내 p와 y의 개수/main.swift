@@ -5,43 +5,51 @@
 //  Created by JongHoon on 2023/01/21.
 //
 
-import Foundation
+//func dailyTemperatures(_ temperatures: [Int]) -> [Int] {
+//
+//    var stack: [(num: Int, index: Int)] = []
+//    var answer: [Int] = []
+//
+//    for i in stride(from: temperatures.count-1, through: 0, by: -1) {
+//        let cur = temperatures[i]
+//        while !stack.isEmpty && stack.last!.num < cur {
+//            let _ = stack.popLast()
+//        }
+//
+//        if stack.isEmpty {
+//            answer.append(0)
+//            stack.append((cur, i))
+//            continue
+//        }
+//
+//        answer.append(stack.last!.index - i)
+//        stack.append((cur, i))
+//    }
+//
+//    return answer.reversed()
+//}
 
-func countingSortByDigit(nums: [Int], digit: Int) -> [Int] {
-    let powed: Int = Int(pow(Double(10), Double(digit)))
-    var counts: [Int] = Array(repeating: 0, count: 10)
-    for num in nums {
-        let countIdx: Int = num / powed % 10
-        counts[countIdx] += 1
+func dailyTemperatures(_ temperatures: [Int]) -> [Int] {
+    
+    var stack: [(num: Int, index: Int)] = []
+    var answer: [Int] = []
+    
+    for i in stride(from: temperatures.count-1, through: 0, by: -1) {
+        let cur = temperatures[i]
+        while !stack.isEmpty && stack.last!.num < cur {
+            let _ = stack.popLast()
+        }
+            
+        if stack.isEmpty {
+            answer.append(0)
+        } else {
+            answer.append(stack.last!.index - i)
+        }
+        
+        stack.append((cur, i))
     }
-
-    var accessCounts: [Int] = []
-    var accessCount: Int = 0
-    for count in counts {
-        accessCount += count
-        accessCounts.append(accessCount)
-    }
-    accessCounts = accessCounts.map { $0 - 1}
-    var sorted: [Int] = Array(repeating: 0, count: nums.count)
-
-    for num in nums.reversed() {
-        let countIdx: Int = num / powed % 10
-        let endLoc: Int = accessCounts[countIdx]
-        sorted[endLoc] = num
-        accessCounts[countIdx] -= 1
-    }
-    return sorted
+        
+    return answer.reversed()
 }
 
-func radixSort(nums: [Int]) -> [Int] {
-    let maxNum: Int = nums.max()!
-    let digits = String(maxNum).count
-    var sorted: [Int] = nums
-    for digit in 0..<digits {
-        sorted = countingSortByDigit(nums: sorted, digit: digit)
-        print(sorted)
-    }
-    return sorted
-}
-
-print(radixSort(nums: [391, 582, 50, 924, 8, 192]))
+print(dailyTemperatures([39, 20, 70, 36, 30, 60, 80, 1]))

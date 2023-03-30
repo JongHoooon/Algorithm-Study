@@ -141,7 +141,7 @@ print(mergeSort(nums: [5, 7, 9, 3, 1, 2, 4]))
 
 <br>
 
-## Quik Sort
+## Quick Sort
 
 <br>
 
