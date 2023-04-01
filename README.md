@@ -32,3 +32,4 @@
 - [String](/NoCodeProgram/2_String.md)
 - [Sorting](/NoCodeProgram/3_Sorting.md)
 - [Stack](/NoCodeProgram/4_Stack.md)
+- [Hash Map](/NoCodeProgram//5_HashTable.md)

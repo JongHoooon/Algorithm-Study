@@ -1153,6 +1153,7 @@ print(mergeSort(nums: [5, 7, 9, 3, 1, 2, 4]))
 
 // print(radixSort(nums: [391, 582, 50, 924, 8, 192]))
 
+/*
 func decodeString(_ S: String) -> String { 
     let inputChars: [Character] = Array(S)
     var stackChar: [[Character]] = []
@@ -1201,3 +1202,23 @@ func decodeString(_ S: String) -> String {
 }
 
 print(decodeString("3[a]2[bc]"))
+*/
+
+/*
+func firstUniqChar(_ s: String) -> Int {
+    var chars: [Character] = Array(s)
+    var countDict: [Character: Int] = [:]         
+
+    for c in chars { 
+        countDict[c, default: 0] += 1
+    }
+
+    for (i, c) in chars.enumerated() { 
+        guard let count = countDict[c] else { continue }
+        if count == 1 { 
+            return i
+        }
+    }
+    return -1
+}
+*/

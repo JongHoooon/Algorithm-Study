@@ -150,3 +150,9 @@ func dailyTemperatures(_ temperatures: [Int]) -> [Int] {
 print(dailyTemperatures([39, 20, 70, 36, 30, 60, 80, 1]))
 // [2, 1, 4, 2, 1, 1, 0, 0]
 ```
+
+<br>
+
+## 참고
+
+- [코드없는 프로그래밍 - 코딩테스트 Stack](https://www.youtube.com/playlist?list=PLDV-cCQnUlIYQOb8_n-d-VPhl_X6cECjg)
