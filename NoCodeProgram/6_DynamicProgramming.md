@@ -114,5 +114,6 @@ func coinChange(_ coins: [Int], _ amount: Int) -> Int {
   - sub problem으로 나눠 본다.
     - topdown
   <img src = "/NoCodeProgram/images/ncp_dp_1.jpeg" width = "50%">
+  
     - bottomup
       뒤에서부터 확인
