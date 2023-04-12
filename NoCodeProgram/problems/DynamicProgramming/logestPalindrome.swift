@@ -1,11 +1,3 @@
-//
-//  main.swift
-//  큰 수 만들기
-//
-//  Created by JongHoon on 2023/01/18.
-//
-
-
 
 func longestPalindrome(s: String) -> String {
     let strCount: Int = s.count
@@ -15,22 +7,22 @@ func longestPalindrome(s: String) -> String {
         count: strCount
     )
 
-    for i in 0..<strCount {
+    for i in 0..<strCount { 
         dp[i][i] = 1
     }
 
-    for i in 1..<strCount-1 {
+    for i in 1..<strCount-1 { 
         dp[i][i+1] = 2
     }
 
-    for i in 2..<strCount {
+    for i in 2..<strCount { 
         var row: Int = 0
         var col: Int = i
-        while col < strCount {
+        while col < strCount { 
             let startChar: Character = chars[row]
             let endChar: Character =  chars[col]
-            let prevCount: Int = dp[row+1][row-1]
-            if startChar == endChar && prevCount != 0 {
+            let prevCount: Int = dp[row+1][col-1]
+            if startChar == endChar && prevCount != 0 { 
                 dp[row][col] = prevCount + 2
             }
             row += 1
@@ -38,11 +30,11 @@ func longestPalindrome(s: String) -> String {
         }
     }
 
-    var maxLength = 0
+    var maxLength = 0 
     var startIdx = 0
     var endIdx = 0
     for row in 0..<strCount {
-        for col in 0..<strCount {
+        for col in 0..<strCount { 
             let currentLength: Int = dp[row][col]
             if maxLength < currentLength {
                 maxLength = currentLength

@@ -109,6 +109,7 @@ func coinChange(_ coins: [Int], _ amount: Int) -> Int {
 ```
 
 ## Decoding Ways
+[LeetCode 91. Decode Ways](https://leetcode.com/problems/decode-ways/)
 
 - 몇가지 방법? -> DP
   - sub problem으로 나눠 본다.
@@ -120,7 +121,6 @@ func coinChange(_ coins: [Int], _ amount: Int) -> Int {
 
 <br>
 
-[Leet Code 91. Decode Ways](https://leetcode.com/problems/decode-ways/)
 ```swift
 func numDecodings(_ s: String) -> Int {
     let chars: [Character] = Array(s)
@@ -150,3 +150,181 @@ func numDecodings(_ s: String) -> Int {
     return dp[0]
 } 
 ```
+
+<br>
+
+## Max SubArray Sum
+[LeetCode 53. Decode Ways](https://leetcode.com/problems/maximum-subarray/)
+
+- max subarray with last element로 생각
+- F(n) = max(In(n), In(n)+F(n-1))
+  - 마지막, 마지막 + 이전 상황
+
+<br>
+
+```swift
+func maxSubArray(_ nums: [Int]) -> Int {
+    var dp: [Int] = Array(repeating: -1, count: nums.count)
+    dp[0] = nums[0]
+
+    for i in 1..<nums.count { 
+        dp[i] = max(nums[i], nums[i]+dp[i-1])
+    }
+
+    return dp.max() ?? -1
+}
+```
+
+<br>
+
+## 최대 곱 subArray
+[LeetCode 152.Maximum Product Subarray](https://leetcode.com/problems/maximum-product-subarray/)
+
+<br>
+
+```swift
+func maxProduct(_ nums: [Int]) -> Int {
+    
+    var maxDP: [Int] = [nums[0]]
+    var minDP: [Int] = [nums[0]]
+
+    for idx in 1..<nums.count { 
+        let prevIdx = idx - 1
+
+        let num: Int = nums[idx]
+        let cand0: Int = num
+        let cand1: Int = maxDP[prevIdx]*num
+        let cand2: Int = minDP[prevIdx]*num
+
+        maxDP.append(max(cand0, cand1, cand2))
+        minDP.append(min(cand0, cand1, cand2))
+    }
+    return maxDP.max() ?? -1
+}
+```
+
+<br>
+
+## 최대 길이 Palindrome Substring
+- 2차원 dp
+
+```swift
+func longestPalindrome(s: String) -> String {
+    let strCount: Int = s.count
+    let chars: [Character] = Array(s)
+    var dp: [[Int]] = Array(
+        repeating: Array(repeating: 0, count: strCount),
+        count: strCount
+    )
+
+    for i in 0..<strCount { 
+        dp[i][i] = 1
+    }
+
+    for i in 1..<strCount-1 { 
+        dp[i][i+1] = 2
+    }
+
+    for i in 2..<strCount { 
+        var row: Int = 0
+        var col: Int = i
+        while col < strCount { 
+            let startChar: Character = chars[row]
+            let endChar: Character =  chars[col]
+            let prevCount: Int = dp[row+1][col-1]
+            if startChar == endChar && prevCount != 0 { 
+                dp[row][col] = prevCount + 2
+            }
+            row += 1
+            col += 1
+        }
+    }
+
+    var maxLength = 0 
+    var startIdx = 0
+    var endIdx = 0
+    for row in 0..<strCount {
+        for col in 0..<strCount { 
+            let currentLength: Int = dp[row][col]
+            if maxLength < currentLength {
+                maxLength = currentLength
+                startIdx = row
+                endIdx = col
+            }
+        }
+    }
+
+    let subStr: String = String(chars[startIdx...endIdx])
+    return subStr
+}
+
+print(longestPalindrome(s: "baabc"))
+```
+
+[LeetCode 647. Palindromic Substrings](https://leetcode.com/problems/palindromic-substrings/description/)
+```swift
+func countSubstrings(_ s: String) -> Int {
+    let s = Array(s)
+
+    var dp = Array(
+        repeatElement(Array(repeatElement(false, count: s.count)), 
+        count: s.count)
+    )
+    var count = 0
+
+    for i in 0..<s.count {
+        dp[i][i] = true
+        count += 1
+    }
+
+    for r in 1..<s.count { 
+        for l in 0..<r { 
+            if s[r] == s[l] && (dp[l+1][r-1] || r - l <= 2) { 
+                dp[l][r] = true
+                count += 1
+            }
+        }
+    }
+
+    return count
+}
+```
+
+<br>
+
+## 단어 자르기
+
+```swift
+func wordBreak(s: String, wordDict: [String]) -> Bool { 
+    let chars: [Character] = Array(s)
+    let wordSet: Set<String> = Set(wordDict)
+
+    let strCount: Int = s.count
+    var dp: [Bool] = Array(repeating: false, count: strCount)
+    dp[0] = true
+
+    for idx in 1..<strCount { 
+        for word in wordSet { 
+            let wordLength: Int = word.count
+            let prevIdx: Int = idx - wordLength
+            
+            if prevIdx < 0 { continue }
+            if !dp[prevIdx] { 
+
+                continue 
+            }
+
+            if String(chars[prevIdx..<idx]) == word {
+                dp[idx] = true
+                break
+            }
+        }
+    }
+    return dp.last!
+}
+```
+
+<br>
+
+## knapsack problem
+- NS(n, w) = max(NS(n-1, w), w-w[n])
