@@ -7,53 +7,72 @@
 
 
 
-func longestPalindrome(s: String) -> String {
-    let strCount: Int = s.count
-    let chars: [Character] = Array(s)
-    var dp: [[Int]] = Array(
-        repeating: Array(repeating: 0, count: strCount),
-        count: strCount
-    )
+import Foundation
 
-    for i in 0..<strCount {
-        dp[i][i] = 1
+
+/*
+// TC: n^2
+func solution(_ want:[String], _ number:[Int], _ discount:[String]) -> Int {
+    
+    var defaultWantDict: [String: Int] = [:]
+    for i in 0..<want.count {
+        defaultWantDict[want[i]] = number[i]
     }
-
-    for i in 1..<strCount-1 {
-        dp[i][i+1] = 2
-    }
-
-    for i in 2..<strCount {
-        var row: Int = 0
-        var col: Int = i
-        while col < strCount {
-            let startChar: Character = chars[row]
-            let endChar: Character =  chars[col]
-            let prevCount: Int = dp[row+1][row-1]
-            if startChar == endChar && prevCount != 0 {
-                dp[row][col] = prevCount + 2
+    var wantDict = defaultWantDict
+    var startIdx: Int = 0
+    var answer: Int = 0
+    
+    for (i, product) in discount.enumerated() {
+        guard let count = wantDict[product] else {
+            startIdx = i + 1
+            wantDict = defaultWantDict
+            continue
+        }
+        
+        if count == 0 {
+            while discount[startIdx] != product {
+                wantDict[discount[startIdx]]! += 1
+                startIdx += 1
             }
-            row += 1
-            col += 1
+            startIdx += 1
+            continue
+        }
+        
+        wantDict[product] = count - 1
+        if i - startIdx + 1 == 10 {
+            wantDict[discount[startIdx]]! += 1
+            startIdx += 1
+            answer += 1
         }
     }
+    
+    return answer
+}
+*/
 
-    var maxLength = 0
-    var startIdx = 0
-    var endIdx = 0
-    for row in 0..<strCount {
-        for col in 0..<strCount {
-            let currentLength: Int = dp[row][col]
-            if maxLength < currentLength {
-                maxLength = currentLength
-                startIdx = row
-                endIdx = col
+
+// TC: NM, N: discount 길이, M: wain길이
+func solution(_ want:[String], _ number:[Int], _ discount:[String]) -> Int {
+    
+    var answer = 0
+    
+    for i in 0..<(discount.count - 9) {
+        var temp = Array(repeating: 0, count: want.count)
+        for j in i..<(i+10) {
+            if let idx = want.firstIndex(of: discount[j]) {
+                temp[idx] += 1
             }
         }
+        if number == temp {
+            answer += 1
+        }
     }
-
-    let subStr: String = String(chars[startIdx...endIdx])
-    return subStr
+    
+    return answer
 }
 
-print(longestPalindrome(s: "baabc"))
+print(solution(
+    ["banana", "apple", "rice", "pork", "pot"],
+    [3, 2, 2, 2, 1],
+    ["chicken", "apple", "apple", "banana", "rice", "apple", "pork", "banana", "pork", "rice", "pot", "banana", "apple", "banana"]
+))
