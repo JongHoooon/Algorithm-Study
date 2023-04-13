@@ -76,7 +76,8 @@ fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
 
-
+# mac
+.DS_Store
 
 iOSInjectionProject/
 
