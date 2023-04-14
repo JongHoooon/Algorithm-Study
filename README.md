@@ -32,4 +32,6 @@
 - [String](/NoCodeProgram/2_String.md)
 - [Sorting](/NoCodeProgram/3_Sorting.md)
 - [Stack](/NoCodeProgram/4_Stack.md)
-- [Hash Map](/NoCodeProgram//5_HashTable.md)
+- [Hash Map](/NoCodeProgram/5_HashTable.md)
+- [Dynamic Programming](/NoCodeProgram/6_DynamicProgramming.md)
+- [Backtracking](/NoCodeProgram/7_Backtracking.md)
