@@ -79,6 +79,9 @@ fastlane/test_output
 # mac
 .DS_Store
 
+# ignore
+ignore/
+
 iOSInjectionProject/
 
 test.swift

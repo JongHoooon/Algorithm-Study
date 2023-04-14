@@ -1,21 +1,21 @@
 # Dynamic Programming
 
-
 1. Problem이 subproblem으로 쪼개질 때
-2. subproble의 솔루션으로 더 큰 problem의 솔루션을 구할 수 있을때
-3. subproble들이 겹칠 때
-   
+2. subproblem의 솔루션으로 더 큰 problem의 솔루션을 구할 수 있을때
+3. subproblem들이 겹칠 때
+
 <br>
 
 - memoization을 사용해 겹치는 부분을 기억한다.
 - Top-Down: 재귀
-- Bottom-Up: 작은 부분부터 
+- Bottom-Up: 작은 부분부터
 
 <br>
 
+## Min Cost Climbing Stairs
 
-## Min Cost Climbing Stairs 
 [LeetCode 746. Min Cost Climbing Stairs](https://leetcode.com/problems/min-cost-climbing-stairs/description/)
+
 - 이전 단계라는 subproblem으로 나눠서 생각한다.
 
 ```swift
@@ -36,7 +36,9 @@ func minCostClimbingStairs(_ cost: [Int]) -> Int {
 <br>
 
 ## Minimum Path Sum
+
 [LeetCode 64. Minimum Path Sum](https://leetcode.com/problems/minimum-path-sum/)
+
 - 이전 단계중 최소 비용을 선택
 
 ```swift
@@ -55,7 +57,7 @@ func minPathSum(_ grid: [[Int]]) -> Int {
     for rowIdx in 1..<rows { 
         minCost2d[rowIdx][0] = grid[rowIdx][0] + minCost2d[rowIdx-1][0]
     }
-    
+  
     for rowIdx in 1..<rows { 
         for colIdx in 1..<cols { 
             let preRow = rowIdx - 1
@@ -75,6 +77,7 @@ func minPathSum(_ grid: [[Int]]) -> Int {
 <br>
 
 ## 동전 바꾸기
+
 [LeetCode 322. Coin Change](https://leetcode.com/problems/coin-change/)
 
 - F(n) = Min(F(n-2), F(n-3), F(n-5) + 1
@@ -103,19 +106,19 @@ func coinChange(_ coins: [Int], _ amount: Int) -> Int {
         }
         dp[i] = countMin == Int.max ? -1 : countMin
     }
-    
+  
     return dp[amount]
 }
 ```
 
 ## Decoding Ways
+
 [LeetCode 91. Decode Ways](https://leetcode.com/problems/decode-ways/)
 
 - 몇가지 방법? -> DP
   - sub problem으로 나눠 본다.
     - topdown
-  <img src = "/NoCodeProgram/images/ncp_dp_1.jpeg" width = "50%">
-
+      <img src = "/NoCodeProgram/images/ncp_dp_1.jpeg" width = "50%">
     - bottomup
       뒤에서부터 확인
 
@@ -154,6 +157,7 @@ func numDecodings(_ s: String) -> Int {
 <br>
 
 ## Max SubArray Sum
+
 [LeetCode 53. Decode Ways](https://leetcode.com/problems/maximum-subarray/)
 
 - max subarray with last element로 생각
@@ -178,13 +182,14 @@ func maxSubArray(_ nums: [Int]) -> Int {
 <br>
 
 ## 최대 곱 subArray
+
 [LeetCode 152.Maximum Product Subarray](https://leetcode.com/problems/maximum-product-subarray/)
 
 <br>
 
 ```swift
 func maxProduct(_ nums: [Int]) -> Int {
-    
+  
     var maxDP: [Int] = [nums[0]]
     var minDP: [Int] = [nums[0]]
 
@@ -206,6 +211,7 @@ func maxProduct(_ nums: [Int]) -> Int {
 <br>
 
 ## 최대 길이 Palindrome Substring
+
 - 2차원 dp
 
 ```swift
@@ -262,6 +268,7 @@ print(longestPalindrome(s: "baabc"))
 ```
 
 [LeetCode 647. Palindromic Substrings](https://leetcode.com/problems/palindromic-substrings/description/)
+
 ```swift
 func countSubstrings(_ s: String) -> Int {
     let s = Array(s)
@@ -307,7 +314,7 @@ func wordBreak(s: String, wordDict: [String]) -> Bool {
         for word in wordSet { 
             let wordLength: Int = word.count
             let prevIdx: Int = idx - wordLength
-            
+          
             if prevIdx < 0 { continue }
             if !dp[prevIdx] { 
 
@@ -327,4 +334,102 @@ func wordBreak(s: String, wordDict: [String]) -> Bool {
 <br>
 
 ## knapsack problem
-- NS(n, w) = max(NS(n-1, w), w-w[n])
+
+- 배낭안에 있는 경우 없는 경우로 subproblem 정의
+- NS(n, w) = max(NS(n-1, w), NS(n-1, w-w[n])+val[n]), (n - 몇번째물건까지, w - 무게 리밋)
+  - 2개의 변수 -> 2차원 dp
+- TC: O(nw)
+- SC: O(nw)
+
+<img src = "/NoCodeProgram/images/ncp_dp_2.jpeg" width = "50%">
+
+|      | 0 | 1  | 2  | 3  | 4  | 5  |
+| ---- | - | -- | -- | -- | -- | -- |
+|      | 0 | 0  | 0  | 0  | 0  | 0  |
+| A    | 0 | 30 | 30 | 30 | 30 | 30 |
+| AB   | 0 | 30 | 30 | 50 | 50 | 50 |
+| ABC  | 0 | 30 | 30 | 50 | 70 | 70 |
+| ABCD | 0 | 30 | 30 | 50 | 70 | 70 |
+
+<br>
+
+## Partition Equal Subset Sum
+
+[LeetCode 416.Partition Equal Subset Sum](https://leetcode.com/problems/partition-equal-subset-sum/)
+
+- (총합 / 2) subset 있는지 확인
+- knapsack problem 처럼 있는 경우 없는 경우로 나누어 생각한다.
+- DP(n, s) = DP(n-1, s) || DP(n-1, s-In[n])
+- TC: O(ns)
+- SC: O(ns)
+
+[2, 1, 2, 3, 4]
+
+|       | 0 | 1 | 2 | 3 | 4 | 5 | 6 |
+| ----- | - | - | - | - | - | - | - |
+|       | T | F | F | F | F | F | F |
+| 2     | T | F | T | F | F | F | F |
+| 21    | T | T | T | T | F | F | F |
+| 212   | T | T | T | T | T | T | F |
+| 2123  | T | T | T | T | T | T | T |
+| 21234 | T | T | T | T | T | T | T |
+
+<br>
+
+## Coin Change 2
+
+- knapsack 처럼 선택된경우 선택되지 않은 경우로 나누어 생각한다.
+- dp(n, s) = dp(n-1, s) + dp(n, s - coin)
+- TC: O(ns)
+- TS: O(ns)
+
+<img src = "/NoCodeProgram/images/ncp_dp_3.jpeg" width = "50%">
+
+[1, 2, 3], sum = 5
+
+|       | 0 | 1 | 2 | 3 | 4 | 5 |
+| ----- | - | - | - | - | - | - |
+|       | 1 | 0 | 0 | 0 | 0 | 0 |
+| 1     | 1 | 1 | 1 | 1 | 1 | 1 |
+| 1,2   | 1 | 1 | 2 | 2 | 3 | 3 |
+| 1,2,3 | 1 | 1 | 2 | 3 | 4 | 5 |
+
+```swift
+func coinChange(amount: Int, coins: [Int]) -> Int {
+
+    var dp: [[Int]] = Array(
+        repeating: Array(repeating: 0, count: amount+1), 
+        count: coins.count+1
+    )
+
+    for i in dp.indices { 
+        dp[i][0] = 1 
+    }
+
+    for rowIdx in 1..<coins.count+1 {
+        for colIdx in 1..<amount+1 {
+            let prevRowIdx: Int = rowIdx - 1
+            let coin: Int = colIdx - coins[rowIdx-1] 
+            var sum: Int = dp[prevRowIdx][colIdx]
+            if coin >= 0 { 
+                sum += dp[rowIdx][coin]
+            }
+            dp[rowIdx][colIdx] = sum
+        }
+    }
+
+    print(dp)
+
+    return dp[coins.count][amount]
+}
+```
+
+<br>
+
+## Longest Common Subsequence
+- TC: O(mn)
+- SC: O(mn)
+
+<img src = "/NoCodeProgram/images/ncp_dp_4.jpeg" width = "50%">
+
+
