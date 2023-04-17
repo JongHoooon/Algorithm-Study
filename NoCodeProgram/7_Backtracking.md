@@ -6,6 +6,17 @@
 
 <br>
 
+1. Exit Condition
+  재귀를 멈추는 조건
+
+2. Processing Parting
+  다음에 사용할 후보 찾기
+
+3. Function Call
+  재귀 형태로 함수 실행
+
+<br>
+
 ## LetterCombinations
 
 ```swift
@@ -110,8 +121,114 @@ func permute(_ nums: [Int]) -> [[Int]] {
 ```
 
 <br>
+
+## Combination Sum
+[LeetCode 39.Subsets](https://leetcode.com/problems/combination-sum/)
+- TC: O(n^depth+1)
+- SC: (Sum / m) (m:코드 중에 가장 작은수), 트리의 깊이
+
+
 <br>
 
 ## 참고 
 
 - [코드없는 프로그래밍 - 코딩테스트 Dynamic Programming](https://www.youtube.com/playlist?list=PLDV-cCQnUlIa0owhTLK-VT994Qh6XTy4v) 
+
+<br>
+
+- [1, 2, 3], sum = 5
+
+<img src="/NoCodeProgram/images/Backtracking/BT_1.jpeg" width="50%">
+
+
+```swift
+func combinationSum(_ candidates: [Int], _ target: Int) -> [[Int]] {
+    func BT(_ index: Int, _ crntNums: [Int], _ targetSum: Int) { 
+        var crntNums: [Int] = crntNums
+
+        // Exit Condition
+        if targetSum <= 0 { 
+            if targetSum == 0 { 
+                answer.append(crntNums)
+            }
+            return
+        }
+
+        // Process (candiated filtering)
+        for i in index..<candidates.count {
+            let n: Int = candidates[i]
+            crntNums.append(n)
+
+            // Recursion call
+            BT(i, crntNums, targetSum-n)
+            let _ = crntNums.removeLast()
+        }
+    }
+
+    var answer: [[Int]] = []
+    BT(0, [], target)
+    return answer
+}
+```
+
+<br>
+
+## IP 주소 복구
+
+- [200523125]
+
+```swift
+func restoreIpAddresses(_ s: String) -> [String] {
+    let chars: [Character] = Array(s)
+
+    func valid(numChars: [Character]) -> Bool { 
+        if numChars.count == 1 {
+            return true
+        }
+        if numChars[0] == "0" {
+            return false
+        }
+        if 255 < Int(String(numChars))! {
+            return false
+        }
+        return true
+    }
+
+    func BT(_ idx: Int, IPs: [String]) {
+        var IPs = IPs
+
+        // Exit Condition
+        if 4 < IPs.count { return }
+        else if idx == chars.count && IPs.count == 4 {
+            let IP: String = IPs.joined(separator: ".") 
+            answer.append(IP)
+            return 
+        }
+
+        let charsCount: Int = chars.count
+        let idxP3: Int = idx + 3
+        var num: [Character] = [] 
+
+        // Candiates Filtering
+        for i in idx..<min(idxP3, charsCount) { 
+            num.append(chars[i])
+            if valid(numChars: num) { 
+                IPs.append(String(num))
+
+                // Recursive Call
+                BT(idx+num.count, IPs: IPs)
+                let _ = IPs.removeLast()
+            }
+        }
+        return
+    }
+
+    var answer: [String] = []
+    BT(0, IPs: [])
+    return answer
+}
+```
+
+
+<img src="/NoCodeProgram/images/Backtracking/BT_2.jpeg" width="50%">
+
