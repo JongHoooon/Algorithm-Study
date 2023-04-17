@@ -177,6 +177,9 @@ func combinationSum(_ candidates: [Int], _ target: Int) -> [[Int]] {
 
 - [200523125]
 
+<img src="/NoCodeProgram/images/Backtracking/BT_2.jpeg" width="50%">
+
+
 ```swift
 func restoreIpAddresses(_ s: String) -> [String] {
     let chars: [Character] = Array(s)
@@ -230,5 +233,4 @@ func restoreIpAddresses(_ s: String) -> [String] {
 ```
 
 
-<img src="/NoCodeProgram/images/Backtracking/BT_2.jpeg" width="50%">
 
