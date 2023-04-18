@@ -1,12 +1,3 @@
-//
-//  main.swift
-//  큰 수 만들기
-//
-//  Created by JongHoon on 2023/01/18.
-//
-
-
-
 func exist(_ board: [[Character]], _ word: String) -> Bool {
 
     if word.count == 0 { return true }
@@ -23,15 +14,15 @@ func exist(_ board: [[Character]], _ word: String) -> Bool {
         count: rows
     )
 
-    func bt(y: Int, x: Int, idx: Int) -> Bool {
+    func bt(y: Int, x: Int, idx: Int) -> Bool { 
 
-        if idx == word.count {
+        if idx == word.count { 
             return true
         } else if !((0..<board.count) ~= y) {
             return false
-        } else if !((0..<board[0].count) ~= x) {
+        } else if !((0..<board[0].count) ~= x) { 
             return false
-        } else if isVisited[y][x] {
+        } else if isVisited[y][x] { 
             return false
         } else if board[y][x] != word[idx] {
             return false
@@ -39,11 +30,11 @@ func exist(_ board: [[Character]], _ word: String) -> Bool {
 
         isVisited[y][x] = true
 
-        if bt(y: y-1, x: x, idx: idx+1) {
+        if bt(y: y-1, x: x, idx: idx+1) { 
             return true
         } else if bt(y: y, x: x+1, idx: idx+1) {
             return true
-        } else if bt(y: y+1, x: x, idx: idx+1) {
+        } else if bt(y: y+1, x: x, idx: idx+1) { 
             return true
         } else if bt(y: y, x: x-1, idx: idx+1) {
             return true
@@ -54,7 +45,7 @@ func exist(_ board: [[Character]], _ word: String) -> Bool {
      }
 
     for y in 0..<rows {
-        for x in 0..<cols {
+        for x in 0..<cols { 
             let answer = bt(y: y, x: x, idx: 0)
             if answer { return answer }
         }

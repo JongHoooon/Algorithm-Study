@@ -232,5 +232,68 @@ func restoreIpAddresses(_ s: String) -> [String] {
 }
 ```
 
+<br>
+
+## 메트릭스 단어 찾기
+[LeetCode 79. Word Search](https://leetcode.com/problems/word-search/description/)
+- TC: O(m * n * 3^(s+1)) (m: rows, n: cols, 3: 상하좌우에서 이전거 제외, s: target 문자열길이))
+- SC: O(m * n + s)
 
 
+```swift
+func exist(_ board: [[Character]], _ word: String) -> Bool {
+
+    if word.count == 0 { return true }
+    
+    let rows: Int = board.count
+    if rows == 0 { return false }
+
+    let cols: Int = board[0].count
+    if cols == 0 { return false }
+
+    let word: [Character] = Array(word)
+    var isVisited: [[Bool]] = Array(
+        repeating: Array(repeating: false, count: cols),
+        count: rows
+    )
+
+    func bt(y: Int, x: Int, idx: Int) -> Bool { 
+
+        if idx == word.count { 
+            return true
+        } else if !((0..<board.count) ~= y) {
+            return false
+        } else if !((0..<board[0].count) ~= x) { 
+            return false
+        } else if isVisited[y][x] { 
+            return false
+        } else if board[y][x] != word[idx] {
+            return false
+        }
+
+        isVisited[y][x] = true
+
+        if bt(y: y-1, x: x, idx: idx+1) { 
+            return true
+        } else if bt(y: y, x: x+1, idx: idx+1) {
+            return true
+        } else if bt(y: y+1, x: x, idx: idx+1) { 
+            return true
+        } else if bt(y: y, x: x-1, idx: idx+1) {
+            return true
+        }
+        isVisited[y][x] = false
+
+        return false
+     }
+
+    for y in 0..<rows {
+        for x in 0..<cols { 
+            let answer = bt(y: y, x: x, idx: 0)
+            if answer { return answer }
+        }
+    }
+
+    return false
+}
+```
