@@ -1,11 +1,3 @@
-//
-//  main.swift
-//  과제 진행하기
-//
-//  Created by JongHoon on 2023/05/12.
-//
-
-
 let size: [Int] = readLine()!
     .split(separator: " ")
     .map { Int($0)! }
