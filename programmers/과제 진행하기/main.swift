@@ -6,82 +6,46 @@
 //
 
 
-let size: [Int] = readLine()!
-    .split(separator: " ")
-    .map { Int($0)! }
+import Foundation
 
-let row: Int = size[0]
-let col: Int = size[1]
-var map: [[Int]] = []
-let dx: [Int] = [-1, 1, 0, 0]
-let dy: [Int] = [0, 0, -1, 1]
-
-var answer: Int = -1
-
-for _ in 0..<row {
-    let row: [Int] = readLine()!
-        .split(separator: " ")
-        .map { Int($0)! }
-    map.append(row)
-}
-
-bt(0)
-print(answer)
-
-func bt(_ wallCount: Int) {
-    if wallCount == 3 {
-        bfs()
-        return
-    }
-
-    for i in 0..<row {
-        for j in 0..<col {
-            if map[i][j] == 0 {
-                map[i][j] = 1
-                bt(wallCount + 1)
-                map[i][j] = 0
-            }
-        }
-    }
-}
-
-
-func bfs() {
-    var map: [[Int]] = map
-    var queue: [(Int, Int)] = []
-    
-    for i in 0..<row {
-        for j in 0..<col {
-            if map[i][j] == 2 {
-                queue.append((i, j))
-            }
-        }
-    }
-
-    while !queue.isEmpty {
-        let current = queue.removeLast()
+func solution(_ plans:[[String]]) -> [String] {
         
-        for i in dx.indices {
-            let nextX: Int = dx[i] + current.0
-            let nextY: Int = dy[i] + current.1
-
-            guard 0..<row ~= nextX && 0..<col ~= nextY else { continue }
-
-            if map[nextX][nextY] == 0 {
-                map[nextX][nextY] = 2
-                queue.append((nextX, nextY))
-            }
-        }
+    let plans: [(String, Int, Int)] = plans.map {
+        let time = $0[1]
+            .split(separator: ":")
+            .map { Int($0)! }
+        
+        let leftTime = Int($0[2])!
+        
+        return ($0[0], time[0]*60 + time[1], leftTime)
     }
+        .sorted(by: { $0.1 < $1.1 })
+    
+    var planStack: [(String, Int, Int)] = []
+    var answer: [String] = []
 
-    var count: Int = 0
-    for i in 0..<row {
-        for j in 0..<col {
-            if map[i][j] == 0 {
-                count += 1
-            }
+    for plan in plans {
+        
+        if planStack.isEmpty {
+            planStack.append((plan.0, plan.1, plan.2))
+            continue
         }
+        
+        var leftTime = plan.1 - planStack.last!.1
+        
+        while !planStack.isEmpty && leftTime - planStack.last!.2 >= 0 {
+            let removedPlan = planStack.removeLast()
+            leftTime -= removedPlan.2
+            answer.append(removedPlan.0)
+        }
+        
+        if  !planStack.isEmpty && leftTime > 0 {
+            let lastPlan = planStack.last!
+            planStack[planStack.count-1] = (lastPlan.0, lastPlan.1, lastPlan.2 - leftTime)
+        }
+        
+        planStack.append((plan.0, plan.1, plan.2))
     }
     
-    answer = max(count, answer)
+    return answer + planStack.map { $0.0 }.reversed()
 }

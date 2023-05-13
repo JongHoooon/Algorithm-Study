@@ -51,7 +51,7 @@ func bfs() {
     }
 
     while !queue.isEmpty {
-        let current = queue.removeLast()
+        let current = queue.removeFirst()
         
         for i in dx.indices {
             let nextX: Int = dx[i] + current.0
