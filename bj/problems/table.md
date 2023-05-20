@@ -12,10 +12,7 @@
 
 ## Sorting [🔗](https://www.acmicpc.net/problemset?sort=ac_desc&tier=11%2C12%2C13%2C14%2C15&algo=97&algo_if=and)
 
-
-## BFS
-
-## Binary Search
+## Binary Search [🔗](https://www.acmicpc.net/problemset?sort=ac_desc&tier=11%2C12%2C13%2C14%2C15&algo=12&algo_if=and)
 
 ## Dynamic Programming
 
