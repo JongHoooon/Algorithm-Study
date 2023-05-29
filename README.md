@@ -6,13 +6,13 @@
 
 ## Baekjoon 문제풀이
 
-- [Baekjoon](/BaekJoon/)
+- [BaekJoon](/BaekJoon/)
 
 <br>
 
 ## Programmers 문제풀이 
 
-- [Programmers](/programmers/)
+- [Programmers](/Programmers/)
 
 <br>
 
