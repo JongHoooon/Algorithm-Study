@@ -7,67 +7,51 @@
 
 import Foundation
 
-func solution(_ board:[String]) -> Int {
-    
-    let board: [[Character]] = board.map { Array($0) }
-    var isVisited: [[Int]] = Array(
-        repeating: Array(
-            repeating: -1, count: board[0].count),
-            count: board.count
-        )
-        
-    let dx = [-1, 1, 0, 0]
-    let dy = [0, 0, -1, 1]
-    
-    var start: (Int, Int) = (-1, -1)
-    
-loop1: for i in 0..<board.count {
-        for j in 0..<board[0].count {
-            if board[i][j] == "R" {
-                start = (i, j)
-                break loop1
-            }
+func solution2(_ cards:[Int]) -> Int {
+
+    let cards = cards.map { $0 - 1 }
+    var isVisited: [Bool] = Array(repeating: false, count: cards.count)
+
+    func dfs1(_ idx: Int) -> Int {
+        var count = 1
+        if isVisited[idx] == true {
+            return count
         }
+
+        let next = cards[idx]
+        count += dfs1(next)
+        return count
     }
-        
-    func bfs(_ start: (Int, Int)) -> Int {
-        
-        var queue: [(Int, Int)] = [start]
-        isVisited[start.0][start.1] = 0
-        
-        while !queue.isEmpty {
-            
-            let current = queue.removeFirst()
-            
-            if board[current.0][current.1] == "G" {
-                return isVisited[current.0][current.1]
-            }
-            
-            for i in dx.indices {
-                
-                var nx = current.0
-                var ny = current.1
-                
-                while 0..<board.count ~= nx + dx[i] &&
-                        0..<board[0].count ~= ny + dy[i] &&
-                        board[nx + dx[i]][ny + dy[i]] != "D" {
-                    
-                    nx += dx[i]
-                    ny += dy[i]
-                }
-                
-//                guard nx != current.0 || ny != current.1 else { continue }
-                guard isVisited[nx][ny] == -1 else { continue }
-                
-                isVisited[nx][ny] = isVisited[current.0][current.1] + 1
-                queue.append((nx, ny))
-            }
+
+    func dfs2(_ idx: Int) -> Int {
+        var count = 1
+        if isVisited[idx] == true {
+            return count
         }
-        return -1
+
+        let next = cards[idx]
+        count += dfs1(next)
+        isVisited[idx] = false
+        return count
     }
-    return bfs(start)
+
+    var answer = 0
+    for i in cards.indices {
+        let first = dfs1(i)
+        if first == cards.count { break }
+
+        var second = 0
+        for j in cards.indices {
+            guard isVisited[j] == false else { continue }
+            let count = dfs2(j)
+            second = max(second, count)
+        }
+
+        answer = max(answer, first * second)
+        isVisited = Array(repeating: false, count: cards.count)
+    }
+
+    return answer
 }
 
-
-print(solution(["...D..R", ".D.G...", "....D.D", "D....D.", "..D...."]))
-
+print(solution2([8,6,3,7,2,5,1,4]))
