@@ -1,6 +1,7 @@
 
 ## Lv.2
 
-- [호텔 대실](/Programmers/problems/LV2/%ED%98%B8%ED%85%94%20%EB%8C%80%EC%8B%A4.swift) - Implementaion, Sort
+- [호텔 대실](/Programmers/problems/LV2/호텔_대실.swift) - Implementaion, Sort
 - [주차 요금 계산](/Programmers/problems/LV2/주차_요금_계산.swift)
-- [✨ 혼자 놀기의 달인](/Programmers/problems/LV2/%ED%98%BC%EC%9E%90_%EB%86%80%EA%B8%B0%EC%9D%98_%EB%8B%AC%EC%9D%B8.swift) - Implementaion, dfs
+- [✨ 혼자 놀기의 달인](/Programmers/problems/LV2/혼자_놀기의_달인.swift) - Implementaion, dfs
+- [✨ 양궁 대회](/Programmers/problems/LV2/양궁대회.swift) - DFS, Brute Force
