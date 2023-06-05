@@ -10,7 +10,7 @@ func solution(_ n:Int, _ k:Int) -> Int {
     let answer = nums
         .filter { isPrime($0) }
         .count
-
+m
     return answer
 }
 

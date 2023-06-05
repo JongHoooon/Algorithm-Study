@@ -1,12 +1,6 @@
-//
-//  main.swift
-//  practice
-//
-//  Created by JongHoon on 2023/06/05.
-//
+import Foundation
 
 func solution(_ n:Int) -> [[Int]] {
-    
     var answer: [[Int]] = Array(
         repeating: Array(repeating: 0, count: n),
         count: n
@@ -38,6 +32,3 @@ func solution(_ n:Int) -> [[Int]] {
     
     return answer
 }
-
-
-print(solution(5))
