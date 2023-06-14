@@ -10,3 +10,4 @@
 - [정수를 나선으로 배치하지](/Programmers/problems/LV2/정수를_나선형으로_배치하기.swift) - Implementaion
 - [삼각 달팽이](/Programmers/problems/LV2/%EC%82%BC%EA%B0%81_%EB%8B%AC%ED%8C%BD%EC%9D%B4.swift) - Implementaion
 - [거리두기 확인하기](/Programmers/problems/LV2/%EA%B1%B0%EB%A6%AC%EB%91%90%EA%B8%B0_%ED%99%95%EC%9D%B8%ED%95%98%EA%B8%B0.swift) - Implementaion
+- [✨ 순위 검색](/Programmers/problems/LV2/%EC%88%9C%EC%9C%84_%EA%B2%80%EC%83%89.swift) - Implementaion, Binary Search
