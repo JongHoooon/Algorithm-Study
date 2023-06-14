@@ -16,18 +16,18 @@ func solution(_ places:[[String]]) -> [Int] {
                 guard place[x][y] == "P" else { continue }
                 
                 // 맨하튼 거리1인 경우
-                for i in dx1.indices {
+                for i in dx1.indices { 
                     let nx = x + dx1[i]
                     let ny = y + dy1[i]
                     
                     guard 0..<5 ~= nx && 0..<5 ~= ny else { continue }
-                    if place[nx][ny] == "P" {
+                    if place[nx][ny] == "P" { 
                         return false
                     }
                 }
                 
-                // 맨하튼 거리2인 경우
-                for i in dx1.indices {
+                // 맨하튼 거리2인 경우(대각으로)
+                for i in dx1.indices { 
                     let checkX = x + dx1[i]
                     let checkY = y + dy1[i]
                     let nx = x + dx1[i]*2
@@ -35,19 +35,19 @@ func solution(_ places:[[String]]) -> [Int] {
                     
                     guard 0..<5 ~= nx && 0..<5 ~= ny else { continue }
                     
-                    if place[nx][ny] == "P" && place[checkX][checkY] != "X" {
+                    if place[nx][ny] == "P" && place[checkX][checkY] != "X" { 
                         return false
                     }
                 }
                 
-                // 맨하튼 거리2인 경우
-                for i in dx2.indices {
+                // 맨하튼 거리2인 경우(직선으로)
+                for i in dx2.indices { 
                     let nx = x + dx2[i]
                     let ny = y + dy2[i]
                     
                     guard 0..<5 ~= nx && 0..<5 ~= ny else { continue }
                     
-                    if place[nx][ny] == "P" && !(place[x+dx2[i]][y] == "X" && place[x][y+dy2[i]] == "X") {
+                    if place[nx][ny] == "P" && !(place[x+dx2[i]][y] == "X" && place[x][y+dy2[i]] == "X") { 
                         return false
                     }
                 }
@@ -58,7 +58,7 @@ func solution(_ places:[[String]]) -> [Int] {
     }
     
     var answer: [Int] = []
-    for place in places {
+    for place in places { 
         let check: Int = checkPlace(place) == true ? 1 : 0
         answer.append(check)
     }
