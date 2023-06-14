@@ -11,3 +11,4 @@
 - [삼각 달팽이](/Programmers/problems/LV2/%EC%82%BC%EA%B0%81_%EB%8B%AC%ED%8C%BD%EC%9D%B4.swift) - Implementaion
 - [거리두기 확인하기](/Programmers/problems/LV2/%EA%B1%B0%EB%A6%AC%EB%91%90%EA%B8%B0_%ED%99%95%EC%9D%B8%ED%95%98%EA%B8%B0.swift) - Implementaion
 - [✨ 순위 검색](/Programmers/problems/LV2/%EC%88%9C%EC%9C%84_%EA%B2%80%EC%83%89.swift) - Implementaion, Binary Search
+- [신규 아이디 추천](/Programmers/problems/LV2/%EC%8B%A0%EA%B7%9C%20%EC%95%84%EC%9D%B4%EB%94%94%20%EC%B6%94%EC%B2%9C.swift) - Implementaion
