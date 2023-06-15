@@ -13,3 +13,4 @@
 - [✨ 순위 검색](/Programmers/problems/LV2/%EC%88%9C%EC%9C%84_%EA%B2%80%EC%83%89.swift) - Implementaion, Binary Search
 - [신규 아이디 추천](/Programmers/problems/LV2/%EC%8B%A0%EA%B7%9C%20%EC%95%84%EC%9D%B4%EB%94%94%20%EC%B6%94%EC%B2%9C.swift) - Implementaion
 - [개인정보 수집 유효기간](/Programmers/problems/LV2/%EA%B0%9C%EC%9D%B8%EC%A0%95%EB%B3%B4%20%EC%88%98%EC%A7%91%20%EC%9C%A0%ED%9A%A8%EA%B8%B0%EA%B0%84.swift)
+- [점찍기](/Programmers/problems/LV2/%EC%A0%90%20%EC%B0%8D%EA%B8%B0.swift)
