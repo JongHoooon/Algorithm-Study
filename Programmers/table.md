@@ -26,4 +26,4 @@
 
 ## Lv.3
 
-- [✨ 표 병합](/Programmers/problems/LV2/%ED%91%9C%20%EB%B3%91%ED%95%A9.swift) - Implementaion
+- [✨ 표 병합](/Programmers/problems/LV3/%ED%91%9C%20%EB%B3%91%ED%95%A9.swift) - Implementaion
