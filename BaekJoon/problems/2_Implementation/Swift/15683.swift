@@ -1,5 +1,114 @@
 import Foundation
 
+let input = readLine()! 
+    .components(separatedBy: " ")
+    .map { Int($0)! }
+
+let n = input[0]
+let m = input[1]
+
+var roomTable: [[Int]] = []
+
+for _ in 0..<n { 
+    let input = readLine()!
+        .components(separatedBy: " ")
+        .map { Int($0)! }
+    roomTable.append(input)
+}
+
+typealias CCTVInfo = (type: Int, x: Int, y: Int)
+var cctvInfos: [CCTVInfo] = []
+var countOfZero: Int = 0
+var answer: Int = Int.max
+
+// 상 좌 하 우
+let dx: [Int] = [-1, 0, 1, 0]
+let dy: [Int] = [0, -1, 0, 1] 
+
+for x in 0..<n { 
+    for y in 0..<m {
+        let room = roomTable[x][y]
+        if 1...5 ~= room {
+            cctvInfos.append((room, x, y))
+        } else if room == 0 { 
+            countOfZero += 1
+        }
+    }
+}
+
+func checkSpot(_ x: Int, _ y: Int, _ direction: Int, _ roomTable: inout [[Int]]) -> Int {
+    var nx = x + dx[direction]
+    var ny = y + dy[direction]
+    var countOfCheck: Int = 0
+
+    while 0..<n ~= nx && 0..<m ~= ny && roomTable[nx][ny] != 6 { 
+        if roomTable[nx][ny] == 0 { 
+            countOfCheck += 1
+            roomTable[nx][ny] = -1
+        }
+        nx += dx[direction]
+        ny += dy[direction]
+    }
+
+    return countOfCheck
+}
+
+func runCCTV(_ cctvInfo: CCTVInfo, _ direction: Int, _ roomTable: inout [[Int]]) -> Int {
+    var countOfCheck: Int = 0
+
+    switch cctvInfo.type { 
+        case 1:
+            countOfCheck += checkSpot(cctvInfo.x, cctvInfo.y, direction, &roomTable)
+        case 2:
+            [0, 2].forEach { 
+                countOfCheck += checkSpot(cctvInfo.x, cctvInfo.y, (direction+$0)%4, &roomTable)
+            }
+        case 3:
+            (0...1).forEach { 
+                countOfCheck += checkSpot(cctvInfo.x, cctvInfo.y, (direction+$0)%4, &roomTable)
+            }
+        case 4: 
+            (0...2).forEach { 
+                countOfCheck += checkSpot(cctvInfo.x, cctvInfo.y, (direction+$0)%4, &roomTable)
+            }
+        case 5:
+            (0...3).forEach { 
+                countOfCheck += checkSpot(cctvInfo.x, cctvInfo.y, (direction+$0)%4, &roomTable)
+            }
+        default:
+            break
+    }
+
+    return countOfCheck
+}
+
+func bt(_ indexOfcctvInfo: Int, _ countOfCheck: Int, _ roomTable: [[Int]]) {
+    if indexOfcctvInfo == cctvInfos.count { 
+        let countOfBlindSpot = countOfZero - countOfCheck 
+        answer = min(countOfBlindSpot, answer)
+        return
+    }
+
+    var nowTable = roomTable
+
+    for i in dx.indices { 
+
+        let newCountOfCheck = runCCTV(cctvInfos[indexOfcctvInfo], i, &nowTable)
+        bt(indexOfcctvInfo+1, countOfCheck+newCountOfCheck, nowTable)
+        nowTable = roomTable
+    }
+}
+
+bt(0, 0, roomTable)
+
+print(answer)
+
+
+/*--------------------------------------------------------------------------------------------------*/
+
+/*
+import Foundation
+
 let input = readLine()!
     .components(separatedBy: " ")
     .map { Int($0)! }
@@ -98,6 +207,7 @@ func dfs(_ index: Int, _ coverCount: Int, _ tempRoomTable: [[Int]]) {
 
 dfs(0, 0, roomTable)
 print(answer)
+*/
 
 /*
 - 참고: https://0urtrees.tistory.com/227
