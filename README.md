@@ -6,13 +6,13 @@
 
 ## Baekjoon 문제풀이
 
-- [BaekJoon](/BaekJoon/)
+- [BaekJoon](/BaekJoon/table.md)
 
 <br>
 
 ## Programmers 문제풀이 
 
-- [Programmers](/Programmers/)
+- [Programmers](/Programmers/table.md)
 
 <br>
 
