@@ -31,3 +31,6 @@
 ## Backtracking
 
 ## Hash Map
+
+## etc
+- [13458_시험감독](/BaekJoon/problems/8_etc/13458_%EC%8B%9C%ED%97%98%EA%B0%90%EB%8F%85.swift) - Math
