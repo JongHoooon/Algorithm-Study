@@ -12,6 +12,7 @@
 - [✨ 14499_주사위 굴리기](/BaekJoon/problems/2_Implementation/Swift/14499_%EC%A3%BC%EC%82%AC%EC%9C%84%20%EA%B5%B4%EB%A6%AC%EA%B8%B0.swift) - Implementation
 - [✨ 15683_감시](/BaekJoon/problems/2_Implementation/Swift/15683_%EA%B0%90%EC%8B%9C.swift) - Implementation, Backtracking, BFS, 
 - [✨ 15686_치킨 배달](/BaekJoon/problems/2_Implementation/Swift/15686_%EC%B9%98%ED%82%A8%20%EB%B0%B0%EB%8B%AC.swift) - Implementation, Backtracking, Brute Force
+- [🚨 14891_톱니바퀴](/BaekJoon/problems/2_Implementation/Swift/14891_%ED%86%B1%EB%8B%88%EB%B0%94%ED%80%B4.swift) - Implementation
 
 ## DFS/BFS
 
