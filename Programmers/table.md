@@ -22,6 +22,7 @@
 - [✨ 택배 배달과 수거하기](/Programmers/problems/LV2/%ED%83%9D%EB%B0%B0%20%EB%B0%B0%EB%8B%AC%EA%B3%BC%20%EC%88%98%EA%B1%B0%ED%95%98%EA%B8%B0.swift) - Implementation
 - [✨ 이모티콘 할인행사](/Programmers/problems/LV2/%EC%9D%B4%EB%AA%A8%ED%8B%B0%EC%BD%98%20%ED%95%A0%EC%9D%B8%ED%96%89%EC%82%AC.swift) - BFS, Floating Point
 - [[3차] n진수 게임](/Programmers/problems/LV2/%5B3%EC%B0%A8%5D%20n%EC%A7%84%EC%88%98%20%EA%B2%8C%EC%9E%84.swift) - Implementation
+- [🚨 문자열 압축](/Programmers/problems/LV2/%EB%AC%B8%EC%9E%90%EC%97%B4%20%EC%95%95%EC%B6%95.swift) - Implementation
 
 <br>
 
