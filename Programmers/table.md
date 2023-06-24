@@ -1,6 +1,7 @@
 ## LV.1
 
 - [바탕화면 정리](/Programmers/problems/LV1/%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4%20%EC%A0%95%EB%A6%AC.swift) - Implementation
+- [성격 유형 검사하기](/Programmers/problems/LV1/%EC%84%B1%EA%B2%A9%20%EC%9C%A0%ED%98%95%20%EA%B2%80%EC%82%AC%ED%95%98%EA%B8%B0.swift) - Implementation, Dictionary
 
 <br>
 
