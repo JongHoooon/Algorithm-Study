@@ -1,6 +1,6 @@
 # Algorithm-Study
 
-> using Swift & Python 🪶
+> using Swift 🪶
 
 <br>
 
