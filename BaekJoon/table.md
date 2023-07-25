@@ -16,6 +16,8 @@
 
 ## DFS/BFS
 
+- [14888_연잔자 끼워넣기](/BaekJoon/practice/part2/14888_연산자끼워넣기.swift) - DFS
+
 ## Sorting [🔗](https://www.acmicpc.net/problemset?sort=ac_desc&tier=11%2C12%2C13%2C14%2C15&algo=97&algo_if=and)
 
 ## Binary Search [🔗](https://www.acmicpc.net/problemset?sort=ac_desc&tier=11%2C12%2C13%2C14%2C15&algo=12&algo_if=and)
