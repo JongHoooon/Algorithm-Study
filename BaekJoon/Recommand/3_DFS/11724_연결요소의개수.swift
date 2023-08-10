@@ -3,7 +3,7 @@ let NM = readLine()!
     .map { Int($0)! }
 
 let N = NM[0]
-let M = NM[1] 
+let M = NM[1]
 
 var isVisit = Array(repeating: false, count: N)
 var map: [Int: [Int]] = [:]
