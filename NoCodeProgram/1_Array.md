@@ -10,6 +10,13 @@
 
 <br>
 
+## Quick Sort 
+- pivot
+- partitioning
+- worst: O(n^2)
+- average / best: O(NlgN)
+- unstable
+
 ## Binary Search
 
 - 배열이 정렬됐을때 원하는 element를 찾는방법
@@ -31,6 +38,42 @@ func binarySearch(_ nums: [Int], _ target: Int) -> Int {
         }
     }
     return -1
+}
+```
+
+```cpp
+#include <iostream>
+#include <vector>
+
+int binarySearch(const std::vector<int>& nums, int target)
+{
+  int leftIdx = 0;
+  int rightIdx = nums.size() - 1;
+
+  while(leftIdx <= rightIdx)
+  { 
+    const int centerIdx = (leftIdx + rightIdx) / 2;
+    const int centerVal = nums[centerIdx];
+
+    if(centerVal == target) 
+    {
+      return centerIdx;
+    }
+
+    if(target < centerVal)
+    {
+      rightIdx -= 1;    
+      continue;
+    }
+
+    if(target > centerVal)
+    { 
+      leftIdx += 1;
+      continue;
+    }
+  }
+
+  return -1;
 }
 ```
 
@@ -66,6 +109,7 @@ func moveZeroes(_ nums: inout [Int]) {
   - O(N^2)
 - sliding window 사용해 시간복잡도 줄일 수 있다. 
   - O(N)
+  - 모든 원소가 양수인경우만 가능!
 
 
 ```swift
@@ -85,6 +129,30 @@ func pivotIndex(_ nums: [Int]) -> Int {
     }
     return -1
 }
+```
+
+```cpp
+int pivotIndex(vector<int>& nums) {
+        const int sum =  accumulate(nums.begin(), nums.end(), 0);
+        int left_sum = 0;
+        int right_sum = sum;
+        int past_pivot_num = 0;
+
+        for(int i = 0; i < nums.size(); ++i) 
+        {
+            const int num = nums[i];
+            left_sum += past_pivot_num;
+            right_sum -= num;
+
+            if(left_sum == right_sum) 
+            {
+                return i;
+            }
+            past_pivot_num = num;
+        }
+
+        return -1;
+    }
 ```
 
 <br>
@@ -245,6 +313,7 @@ func findPeakElement(_ nums: [Int]) -> Int {
 
 - 기존의 interval들과 하나씩 비교하면 시간복잡도: O(N^2) 
 - 시작 요소로 정렬하면 시간복잡도 줄일 수 있다: O(NlgN)
+- 그림을 그려봐라!
 
 ```swift
 func merge(_ intervals: [[Int]]) -> [[Int]] {
