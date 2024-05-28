@@ -1,1 +1,13 @@
-{}
+{
+  "files.associations": {
+    "string": "cpp",
+    "__split_buffer": "cpp",
+    "array": "cpp",
+    "bitset": "cpp",
+    "initializer_list": "cpp",
+    "string_view": "cpp",
+    "vector": "cpp",
+    "__config": "cpp",
+    "map": "cpp"
+  }
+}
