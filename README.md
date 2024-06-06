@@ -35,3 +35,9 @@
 - [Hash Map](/NoCodeProgram/5_HashTable.md)
 - [Dynamic Programming](/NoCodeProgram/6_DynamicProgramming.md)
 - [Backtracking](/NoCodeProgram/7_Backtracking.md)
+
+<br>
+
+## Cheat Sheet
+- [C++](/Cheat%20Sheet/Cpp/Cheat_Sheet.md)
+- [Swift](/Cheat%20Sheet/Swift/Cheat_Sheet.md)
