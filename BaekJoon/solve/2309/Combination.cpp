@@ -3,7 +3,8 @@
 
 using namespace std;
 
-const vector<int> nums = {1, 2, 3, 4, 5};
+const vector<int> nums = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+int cnt = 0;
 
 void make_combination(int index , vector<int> current_nums) { 
   if(current_nums.size() == 3) {
