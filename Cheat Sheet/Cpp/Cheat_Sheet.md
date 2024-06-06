@@ -1,3 +1,5 @@
+# C++ Cheat Sheet
+
 ## 문자열 쪼개기 Split()
 
 ```cpp
@@ -318,5 +320,123 @@ int main(void) {
     }
     cout << "\n";
   }
+}
+```
+
+## 조합(Combination)
+
+```cpp
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+const vector<int> nums = {1, 2, 3, 4, 5};
+
+void make_combination(int index , vector<int> current_nums) { 
+  if(current_nums.size() == 3) {
+    for(int num : current_nums) {
+      cout << num << " ";
+    }
+    cout << '\n';
+    return;
+  }
+  for(int i = index; i < nums.size(); ++i) { 
+    vector<int> next_nums = current_nums;
+    next_nums.push_back(nums[i]);
+    make_combination(i + 1, next_nums);
+  }
+}
+
+int main(void) {
+  make_combination(0, { });
+}
+```
+
+## 순열(Permutation) 
+
+```cpp
+int a[9];
+
+int main(void) { 
+  for(int i = 0; i < 9; ++i) { 
+    cin >> a[i];
+  }
+  sort(a, a + 9);
+  do { 
+    int sum = 0;
+    for(int i = 0; i < 7; ++i) sum += a[i];
+    if(sum == 100) break;
+  } while(next_permutation(a, a + 9));
+  for(int i = 0; i < 7; ++i) cout << a[i] << '\n';
+  return 0;
+}
+```
+
+<be>
+
+```cpp
+int n = 9;
+int r = 7;
+int heights[9];
+int current_heights[7];
+
+void makePermutation(int depth) { 
+  if(depth == r) { 
+    int sum = 0;
+    for(int i = 0; i < r; ++i) sum += heights[i];
+    if(sum == 100) { 
+      sort(heights, heights + r);
+      for(int i = 0; i < r; ++i) { 
+        cout << heights[i] << "\n";
+      }
+      exit(0);
+    }
+    return;
+  }
+  for(int i = depth; i < n; ++i) { 
+    swap(heights[i], heights[depth]);
+    makePermutation(depth + 1);
+    swap(heights[i], heights[depth]);
+  }
+  return;
+}
+
+<br>
+
+```cpp
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int nums[5] = {1, 2, 3, 4, 5};
+bool visited[5];
+
+void make_permutation(vector<int> current_nums) {
+  if(current_nums.size() == 3) {
+    for(int n : current_nums) { 
+      cout << n << " ";
+    }
+    cout << "\n";
+    return;
+  }
+
+  for(int i = 0; i < 5; ++i) { 
+    if(visited[i] == true) { 
+      continue;
+    } else { 
+      visited[i] = true;
+      vector<int> next_nums = current_nums;
+      next_nums.push_back(nums[i]);
+      make_permutation(next_nums);
+      visited[i] = false; 
+    }
+  }
+}
+
+int main(void) { 
+  make_permutation({ });
+  return 0;
 }
 ```
