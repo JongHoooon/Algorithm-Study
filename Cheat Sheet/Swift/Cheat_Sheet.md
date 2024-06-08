@@ -44,3 +44,11 @@ func makePermutation(currentNums: [Int]) {
 
 makePermutation(currentNums: [])
 ```
+
+<br>
+
+## Index -> distance 로 변환
+```swift
+let index = pattern.firstIndex(of: "*")!
+let distance = pattern.distance(from: pattern.startIndex, to: index)
+```
