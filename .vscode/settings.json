@@ -8,6 +8,7 @@
     "string_view": "cpp",
     "vector": "cpp",
     "__config": "cpp",
-    "map": "cpp"
+    "map": "cpp",
+    "ios": "cpp"
   }
 }
