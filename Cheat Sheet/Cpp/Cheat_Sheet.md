@@ -440,3 +440,9 @@ int main(void) {
   return 0;
 }
 ```
+
+## string to int
+
+```cpp
+atoi(str.c_str())
+```
